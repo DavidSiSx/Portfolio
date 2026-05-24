@@ -122,12 +122,15 @@ export const ThreeCanvas: React.FC = () => {
     loader.load('/hexacore.glb', (gltf) => {
       const model = gltf.scene;
 
-      // Normalize size of the loaded model
+      // Normalize size of the loaded model and center its pivot
       const box = new THREE.Box3().setFromObject(model);
       const size = box.getSize(new THREE.Vector3());
+      const center = box.getCenter(new THREE.Vector3());
       const maxDim = Math.max(size.x, size.y, size.z) || 1;
       const scaleFactor = 0.9 / maxDim;
+      
       model.scale.set(scaleFactor, scaleFactor, scaleFactor);
+      model.position.set(-center.x * scaleFactor, -center.y * scaleFactor, -center.z * scaleFactor);
 
       // Traversal to apply unified metalness/glass shader
       model.traverse((child) => {
