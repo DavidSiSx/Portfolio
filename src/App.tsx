@@ -187,13 +187,14 @@ export default function App() {
 
   const t = content[lang]
 
-  // Track scroll to show navbar when outside the hero
+  // Track scroll to show navbar only when the "Sobre Mí" (#about) section is visible/reached
   useEffect(() => {
     const handleScroll = () => {
-      const hero = document.getElementById('hero')
-      if (hero) {
-        const heroHeight = hero.offsetHeight
-        setScrolled(window.scrollY > heroHeight - 64)
+      const about = document.getElementById('about')
+      if (about) {
+        const rect = about.getBoundingClientRect()
+        // Show navbar when the top of the #about section is within 100px from the top of the viewport
+        setScrolled(rect.top <= 100)
       } else {
         setScrolled(window.scrollY > window.innerHeight - 64)
       }
