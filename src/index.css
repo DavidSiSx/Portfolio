@@ -1,11 +1,11 @@
 /* ================================================================
    DESIGN TOKENS — David Sierra Sosa Portfolio
    
-   Color Palette:
-   - Mist        #E8EDF2  (lightest — backgrounds, soft surfaces)
-   - Slate       #2C3947  (darkest — primary text, deep backgrounds)
-   - Steel       #547A95  (mid accent — links, interactive elements)
-   - Gold        #C2A56D  (warm accent — highlights, CTAs, special)
+   Color Palette (Dark Organic):
+   - Sun         #FFDE42  (bright yellow — accent, CTAs, highlights)
+   - Olive       #4C5C2D  (dark olive — secondary surfaces, muted text)
+   - Forest      #313E17  (deep green — elevated surfaces, cards)
+   - Shadow      #1B0C0C  (near-black brown — base background)
    
    Typography:
    - Display/Headings: Space Grotesk (geometric, distinctive)
@@ -16,22 +16,22 @@
 /* --- CSS Custom Properties --- */
 :root {
   /* Core palette */
-  --color-mist: #E8EDF2;
-  --color-slate: #2C3947;
-  --color-steel: #547A95;
-  --color-gold: #C2A56D;
+  --color-sun: #FFDE42;
+  --color-olive: #4C5C2D;
+  --color-forest: #313E17;
+  --color-shadow: #1B0C0C;
 
-  /* Semantic mapping */
-  --color-bg: #FAFBFD;
-  --color-bg-alt: var(--color-mist);
-  --color-surface: #FFFFFF;
-  --color-text: var(--color-slate);
-  --color-text-muted: #6B7A8D;
-  --color-text-subtle: #8E9BAA;
-  --color-accent: var(--color-steel);
-  --color-highlight: var(--color-gold);
-  --color-border: #D5DCE4;
-  --color-border-subtle: #E4E9EF;
+  /* Semantic mapping (dark theme) */
+  --color-bg: var(--color-shadow);
+  --color-bg-alt: #241212;
+  --color-surface: var(--color-forest);
+  --color-text: #F2ECDF;
+  --color-text-muted: #B5AC97;
+  --color-text-subtle: #857D6C;
+  --color-accent: var(--color-sun);
+  --color-highlight: #FFE97A;
+  --color-border: rgba(76, 92, 45, 0.5);
+  --color-border-subtle: rgba(76, 92, 45, 0.25);
 
   /* Typography */
   --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
@@ -57,11 +57,11 @@
   --radius-xl: 16px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(44, 57, 71, 0.05);
-  --shadow-md: 0 4px 12px rgba(44, 57, 71, 0.08);
-  --shadow-lg: 0 8px 24px rgba(44, 57, 71, 0.10);
-  --shadow-xl: 0 16px 48px rgba(44, 57, 71, 0.12);
+  /* Shadows (dark theme — use black-based shadows) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.20);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.30);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.40);
 
   /* Transitions */
   --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
@@ -179,18 +179,18 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: var(--color-olive);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-steel);
+  background: var(--color-sun);
 }
 
 /* --- Selection --- */
 ::selection {
-  background: var(--color-steel);
-  color: #FFFFFF;
+  background: var(--color-sun);
+  color: var(--color-shadow);
 }
 
 /* --- Reduced Motion --- */
