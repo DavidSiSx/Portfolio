@@ -832,18 +832,6 @@
   color: var(--color-text);
 }
 
-/* --- Three.js Canvas Container --- */
-.three-canvas-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
 /* --- Project Sections (Full screen per project) --- */
 .project-section {
   display: flex;
