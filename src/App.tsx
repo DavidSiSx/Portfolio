@@ -28,10 +28,10 @@ const content = {
     nav: { about: 'Sobre Mí', skills: 'Habilidades', projects: 'Proyectos', contact: 'Contacto' },
     hero: {
       eyebrow: 'Ingeniería en TI',
-      title: ['Construyendo', 'soluciones digitales', 'robustas.'],
-      description: 'Soy David Alejandro Sierra Sosa, estudiante de Ingeniería en TI en la Universidad Tecnológica de Cancún. Me especializo en arquitectura limpia, desarrollo full-stack y experiencias de usuario de alto impacto.',
-      cta1: 'Ver Proyectos',
-      cta2: 'Contacto',
+      title: 'DAVID SIERRA',
+      subtitle: 'Ingeniería en TI • Cancún, MX',
+      scrollText: 'SCROLL PARA MÁS DETALLES',
+      status: 'REPRODUCIENDO AHORA'
     },
     about: {
       eyebrow: 'SOBRE MÍ',
@@ -105,10 +105,10 @@ const content = {
     nav: { about: 'About', skills: 'Skills', projects: 'Projects', contact: 'Contact' },
     hero: {
       eyebrow: 'IT Engineering',
-      title: ['Building', 'robust digital', 'solutions.'],
-      description: 'I am David Alejandro Sierra Sosa, an IT Engineering student at the Universidad Tecnológica de Cancún. I specialize in clean architecture, full-stack development, and high-impact user experiences.',
-      cta1: 'View Projects',
-      cta2: 'Contact Me',
+      title: 'DAVID SIERRA',
+      subtitle: 'IT Engineering • Cancún, MX',
+      scrollText: 'SCROLL FOR CONTEXT',
+      status: 'NOW PLAYING'
     },
     about: {
       eyebrow: 'ABOUT ME',
@@ -237,21 +237,87 @@ export default function App() {
         </div>
       </nav>
 
-      {/* ── Hero ── */}
+      {/* ── Hero (Spotify-Player inspired / Fullscreen Layout) ── */}
       <section id="hero" className="hero">
-        <div className="container">
-          <div className="hero__content">
-            <span className="hero__eyebrow">{t.hero.eyebrow}</span>
-            <h1 className="hero__title">
-              {t.hero.title[0]}<br />
-              <em>{t.hero.title[1]}</em><br />
-              {t.hero.title[2]}
-            </h1>
-            <p className="hero__description">{t.hero.description}</p>
-            <div className="hero__actions">
-              <a href="#projects" className="btn btn--primary">{t.hero.cta1}</a>
-              <a href="#contact" className="btn btn--secondary">{t.hero.cta2}</a>
+        <div className="hero__bg-text">SIERRA SOSA</div>
+
+        <div className="hero__player-card">
+          <div className="hero__album-wrapper">
+            <div className="hero__album-glow"></div>
+            <img src="/preview.gif" alt="Portfolio Live Preview" className="hero__album-art" />
+          </div>
+
+          <div className="hero__player-body">
+            <div className="hero__track-info">
+              <div className="hero__track-meta">
+                <span className="hero__track-status">{t.hero.status}</span>
+                <h1 className="hero__track-title">{t.hero.title}</h1>
+                <p className="hero__track-artist">{t.hero.subtitle}</p>
+              </div>
+              <button className="hero__track-like" aria-label="Like track">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+              </button>
             </div>
+
+            {/* Progress Area */}
+            <div className="hero__player-progress">
+              <div className="hero__progress-bar">
+                <div className="hero__progress-fill"></div>
+              </div>
+              <div className="hero__player-time">
+                <span>0:26</span>
+                <span>20:26</span>
+              </div>
+            </div>
+
+            {/* Controls */}
+            <div className="hero__player-controls">
+              <button className="player-control-btn" aria-label="Shuffle">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
+                </svg>
+              </button>
+
+              <button className="player-control-btn" aria-label="Previous">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <polygon points="19,20 9,12 19,4" />
+                  <rect x="5" y="4" width="2" height="16" />
+                </svg>
+              </button>
+
+              <button className="player-control-btn player-control-btn--play" aria-label="Play">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                  <polygon points="5,3 19,12 5,21" />
+                </svg>
+              </button>
+
+              <button className="player-control-btn" aria-label="Next">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <polygon points="5,4 15,12 5,20" />
+                  <rect x="17" y="4" width="2" height="16" />
+                </svg>
+              </button>
+
+              <button className="player-control-btn" aria-label="Repeat">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="17 1 21 5 17 9" />
+                  <path d="M3 11V9a4 4 0 0 1 4-4h14M7 23 3 19 7 15" />
+                  <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="hero__scroll-down">
+          <span>{t.hero.scrollText}</span>
+          <div className="hero__scroll-indicator-arrow">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
           </div>
         </div>
       </section>
