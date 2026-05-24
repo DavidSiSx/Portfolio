@@ -36,27 +36,31 @@ export default function App() {
     };
   }, []);
 
-  // Intersection Observer for scroll reveal effects
+  // Bulletproof Scroll Reveal Trigger (Scroll + Resize + Mount snap checks)
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px'
-      }
-    );
+    const handleReveal = () => {
+      const elements = document.querySelectorAll('.reveal');
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        // Element is intersecting the viewport (with 40px buffer)
+        const isVisible = rect.top < window.innerHeight - 40 && rect.bottom > 40;
+        if (isVisible) {
+          el.classList.add('visible');
+        }
+      });
+    };
 
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach((el) => observer.observe(el));
+    handleReveal();
+    window.addEventListener('scroll', handleReveal, { passive: true });
+    window.addEventListener('resize', handleReveal);
+    
+    // Run after HMR or snap paint completes
+    const timer = setTimeout(handleReveal, 150);
 
     return () => {
-      revealElements.forEach((el) => observer.unobserve(el));
+      window.removeEventListener('scroll', handleReveal);
+      window.removeEventListener('resize', handleReveal);
+      clearTimeout(timer);
     };
   }, [lang]);
 
