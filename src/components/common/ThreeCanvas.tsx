@@ -12,13 +12,13 @@ interface SectionTransform {
 
 const SECTION_TRANSFORMS: SectionTransform[] = [
   { pos: [1.4, 0, 0], rot: [0.5, 0.5, 0], scale: 1.3, color: 0xFFDE42, geometryType: 'torusKnot' },       // Hero: Glowing gold TorusKnot (Right)
-  { pos: [1.3, 0.1, 0], rot: [0.8, -0.2, 0.5], scale: 1.2, color: 0x4C5C2D, geometryType: 'octahedron' }, // About: Olive Octahedron (Right, since text is Left)
+  { pos: [1.3, 0.1, 0], rot: [0.8, -0.2, 0.5], scale: 1.2, color: 0x4C5C2D, geometryType: 'octahedron' }, // About: Olive Octahedron (Right)
   { pos: [-1.3, -0.1, 0], rot: [-0.3, 0.8, 0.2], scale: 1.1, color: 0xFFDE42, geometryType: 'icosahedron' }, // Skills: Golden Icosahedron (Left)
-  { pos: [1.4, 0, 0], rot: [0.5, 0.5, 0.5], scale: 1.3, color: 0xFFE97A, geometryType: 'box' },           // Project 1 (Hexacore): Box (Right)
-  { pos: [-1.4, 0.1, 0], rot: [0.2, 0.9, 0.4], scale: 1.2, color: 0x4C5C2D, geometryType: 'torus' },         // Project 2 (Invitaciones): Torus (Left)
-  { pos: [1.3, -0.1, 0], rot: [0.8, 0.3, 0.1], scale: 1.2, color: 0xFFDE42, geometryType: 'cone' },        // Project 3 (Smart Farm): Cone (Right)
-  { pos: [-1.3, 0.1, 0], rot: [0.1, 0.5, 0.9], scale: 1.1, color: 0x4C5C2D, geometryType: 'cylinder' },     // Project 4 (Zotz): Cylinder (Left)
-  { pos: [1.3, 0, 0], rot: [0.4, 0.4, 0.4], scale: 1.2, color: 0xFFDE42, geometryType: 'sphere' },       // Project 5 (AI Dashboard): Sphere (Right)
+  { pos: [-1.4, 0, 0], rot: [0.5, 0.5, 0.5], scale: 1.3, color: 0x00E5FF, geometryType: 'box' },           // Project 1 (Hexacore): Box (Left - Cyan)
+  { pos: [1.4, 0.1, 0], rot: [0.2, 0.9, 0.4], scale: 1.2, color: 0xFF69B4, geometryType: 'torus' },         // Project 2 (Invitaciones): Torus (Right - Pink)
+  { pos: [-1.3, -0.1, 0], rot: [0.8, 0.3, 0.1], scale: 1.2, color: 0xAEEA00, geometryType: 'cone' },        // Project 3 (Smart Farm): Cone (Left - Green)
+  { pos: [1.3, 0.1, 0], rot: [0.1, 0.5, 0.9], scale: 1.1, color: 0xFF3366, geometryType: 'cylinder' },     // Project 4 (Zotz): Cylinder (Right - Red)
+  { pos: [-1.3, 0, 0], rot: [0.4, 0.4, 0.4], scale: 1.2, color: 0x00FFCC, geometryType: 'sphere' },       // Project 5 (AI Dashboard): Sphere (Left - Cyan/Green)
   { pos: [0, 0.4, -0.6], rot: [0.5, 0.5, 0.5], scale: 1.6, color: 0xFFE97A, geometryType: 'dodecahedron' }  // Contact: Dodecahedron at center
 ];
 
@@ -134,12 +134,12 @@ export const ThreeCanvas: React.FC = () => {
         if ((child as THREE.Mesh).isMesh) {
           const meshChild = child as THREE.Mesh;
           meshChild.material = new THREE.MeshPhysicalMaterial({
-            color: 0xFFE97A,
+            color: 0x00E5FF,
             metalness: 0.8,
             roughness: 0.15,
             clearcoat: 1.0,
             clearcoatRoughness: 0.1,
-            emissive: 0xFFE97A,
+            emissive: 0x00E5FF,
             emissiveIntensity: 0.15,
             flatShading: true
           });

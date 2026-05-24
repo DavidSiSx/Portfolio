@@ -545,7 +545,7 @@
 
 .project-card {
   background: rgba(49, 62, 23, 0.15);
-  border: 1px solid rgba(76, 92, 45, 0.3);
+  border: 1px solid var(--project-border, rgba(76, 92, 45, 0.3));
   border-radius: var(--radius-lg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -559,8 +559,8 @@
 
 .project-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(76, 92, 45, 0.6);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 222, 66, 0.1);
+  border-color: var(--project-border-hover, rgba(76, 92, 45, 0.6));
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px var(--project-glow, rgba(255, 222, 66, 0.1));
 }
 
 .project-card__preview {
@@ -568,10 +568,10 @@
   aspect-ratio: 16 / 10;
   background: linear-gradient(rgba(18, 12, 12, 0.9), rgba(18, 12, 12, 0.95));
   background-image: 
-    radial-gradient(rgba(76, 92, 45, 0.25) 1px, transparent 1px),
+    radial-gradient(var(--project-border, rgba(76, 92, 45, 0.25)) 1px, transparent 1px),
     linear-gradient(rgba(18, 12, 12, 0.8), rgba(18, 12, 12, 0.8));
   background-size: 16px 16px, 100% 100%;
-  border-bottom: 1px solid rgba(76, 92, 45, 0.3);
+  border-bottom: 1px solid var(--project-border, rgba(76, 92, 45, 0.3));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -598,15 +598,16 @@
   left: 16px;
   font-family: var(--font-mono);
   font-size: 0.625rem;
-  color: rgba(76, 92, 45, 0.6);
+  color: var(--project-accent, rgba(76, 92, 45, 0.6));
+  opacity: 0.75;
   letter-spacing: 0.1em;
 }
 
 .project-card__preview-label {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--color-sun);
-  border: 1px solid rgba(255, 222, 66, 0.2);
+  color: var(--project-accent, var(--color-sun));
+  border: 1px solid var(--project-border, rgba(255, 222, 66, 0.2));
   padding: 6px 16px;
   border-radius: var(--radius-sm);
   background: rgba(27, 12, 12, 0.85);
@@ -619,10 +620,10 @@
 }
 
 .project-card:hover .project-card__preview-label {
-  border-color: var(--color-sun);
+  border-color: var(--project-accent, var(--color-sun));
   color: var(--color-shadow);
-  background: var(--color-sun);
-  box-shadow: 0 0 15px rgba(255, 222, 66, 0.4);
+  background: var(--project-accent, var(--color-sun));
+  box-shadow: 0 0 15px var(--project-accent, rgba(255, 222, 66, 0.4));
 }
 
 .project-card__body {
@@ -639,18 +640,9 @@
   margin-bottom: var(--space-3);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-}
-
-.project-card__badge--personal {
-  background: rgba(255, 222, 66, 0.10);
-  color: var(--color-sun);
-  border: 1px solid rgba(255, 222, 66, 0.20);
-}
-
-.project-card__badge--school {
-  background: rgba(76, 92, 45, 0.20);
-  color: var(--color-text-muted);
-  border: 1px solid rgba(76, 92, 45, 0.35);
+  background: var(--project-badge-bg, rgba(255, 222, 66, 0.10));
+  color: var(--project-accent, var(--color-sun));
+  border: 1px solid var(--project-border, rgba(255, 222, 66, 0.20));
 }
 
 .project-card__title {
@@ -679,7 +671,7 @@
   border-radius: var(--radius-sm);
   background: rgba(27, 12, 12, 0.6);
   color: var(--color-text-muted);
-  border: 1px solid rgba(76, 92, 45, 0.4);
+  border: 1px solid var(--project-border, rgba(76, 92, 45, 0.4));
 }
 
 .project-card__link {
@@ -689,13 +681,14 @@
   margin-top: var(--space-5);
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--color-sun);
+  color: var(--project-accent, var(--color-sun));
   transition: all var(--duration-fast) var(--ease-default);
 }
 
 .project-card__link:hover {
-  color: var(--color-highlight);
+  color: var(--project-accent, var(--color-highlight));
   transform: translateX(3px);
+  opacity: 0.9;
 }
 
 .project-card__link svg {
@@ -897,7 +890,7 @@
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--color-sun);
+  color: var(--project-accent, var(--color-sun));
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-bottom: var(--space-4);

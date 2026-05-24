@@ -16,16 +16,56 @@ interface ProjectsProps {
   };
 }
 
+const PROJECT_THEMES = [
+  { // Hexacore - Cyan
+    '--project-accent': '#00E5FF',
+    '--project-border': 'rgba(0, 229, 255, 0.3)',
+    '--project-border-hover': 'rgba(0, 229, 255, 0.6)',
+    '--project-glow': 'rgba(0, 229, 255, 0.12)',
+    '--project-badge-bg': 'rgba(0, 229, 255, 0.1)',
+  },
+  { // Invitaciones XV - Pink
+    '--project-accent': '#FF69B4',
+    '--project-border': 'rgba(255, 105, 180, 0.3)',
+    '--project-border-hover': 'rgba(255, 105, 180, 0.6)',
+    '--project-glow': 'rgba(255, 105, 180, 0.12)',
+    '--project-badge-bg': 'rgba(255, 105, 180, 0.1)',
+  },
+  { // Smart Farm - Lime Green
+    '--project-accent': '#AEEA00',
+    '--project-border': 'rgba(174, 234, 0, 0.3)',
+    '--project-border-hover': 'rgba(174, 234, 0, 0.6)',
+    '--project-glow': 'rgba(174, 234, 0, 0.12)',
+    '--project-badge-bg': 'rgba(174, 234, 0, 0.1)',
+  },
+  { // Zotz Barber - Amber / Red
+    '--project-accent': '#FF3366',
+    '--project-border': 'rgba(255, 51, 102, 0.3)',
+    '--project-border-hover': 'rgba(255, 51, 102, 0.6)',
+    '--project-glow': 'rgba(255, 51, 102, 0.12)',
+    '--project-badge-bg': 'rgba(255, 51, 102, 0.1)',
+  },
+  { // AI Dashboard - Neon Emerald
+    '--project-accent': '#00FFCC',
+    '--project-border': 'rgba(0, 255, 204, 0.3)',
+    '--project-border-hover': 'rgba(0, 255, 204, 0.6)',
+    '--project-glow': 'rgba(0, 255, 204, 0.12)',
+    '--project-badge-bg': 'rgba(0, 255, 204, 0.1)',
+  }
+];
+
 export const Projects: React.FC<ProjectsProps> = ({ t }) => {
   return (
     <>
       {t.items.map((project, index) => {
-        const isRightAligned = index % 2 !== 0;
+        const isRightAligned = index % 2 === 0;
+        const themeStyles = PROJECT_THEMES[index % PROJECT_THEMES.length];
         return (
           <section
             key={project.title}
             id={index === 0 ? 'projects' : `project-${index}`}
             className={`project-section ${isRightAligned ? 'project-section--right' : ''}`}
+            style={themeStyles as React.CSSProperties}
           >
             <div className="container project-section__container">
               <div className="project-section__content reveal">
