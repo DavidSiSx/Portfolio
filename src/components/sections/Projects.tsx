@@ -20,13 +20,13 @@ export const Projects: React.FC<ProjectsProps> = ({ t }) => {
   return (
     <section id="projects" className="section section--alt">
       <div className="container">
-        <div className="section__header">
+        <div className="section__header reveal">
           <p className="section__eyebrow">{t.eyebrow}</p>
           <h2 className="section__title">{t.title}</h2>
         </div>
         <div className="projects-grid">
-          {t.items.map(project => (
-            <article key={project.title} className="project-card">
+          {t.items.map((project, index) => (
+            <article key={project.title} className={`project-card reveal reveal-delay-${(index % 3) + 1}`}>
               <div className="project-card__preview">
                 <span className="project-card__preview-label">Preview</span>
               </div>

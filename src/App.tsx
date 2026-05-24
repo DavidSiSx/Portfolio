@@ -36,6 +36,30 @@ export default function App() {
     };
   }, []);
 
+  // Intersection Observer for scroll reveal effects
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      }
+    );
+
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, [lang]);
+
   const toggleLang = () => {
     setLang(prev => (prev === 'es' ? 'en' : 'es'));
   };

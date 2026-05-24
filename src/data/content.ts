@@ -59,7 +59,7 @@ export const content: { es: Translation; en: Translation } = {
     about: {
       eyebrow: 'SOBRE MÍ',
       title: 'Un poco de contexto',
-      description: 'Me apasiona resolver problemas complejos de flujo de datos, estructurar backends modulares y diseñar interfaces interactivas de primera calidad. Actualmente curso mi carrera en la UT de Cancún, donde cada proyecto es una oportunidad para aplicar principios de ingeniería real.',
+      description: 'Me apasiona traducir diseños complejos en código limpio, construir arquitecturas front-end eficientes y desarrollar interfaces dinámicas de primera calidad utilizando tecnologías como React y Next.js. Actualmente curso mi carrera en la UT de Cancún, donde cada proyecto es una oportunidad para aplicar principios de ingeniería real centrados en la experiencia del usuario.',
     },
     skills: {
       eyebrow: 'HABILIDADES',
@@ -136,7 +136,7 @@ export const content: { es: Translation; en: Translation } = {
     about: {
       eyebrow: 'ABOUT ME',
       title: 'A bit of context',
-      description: 'I am passionate about solving complex data pipeline problems, structuring modular backends, and designing high-fidelity interactive user interfaces. I am currently pursuing my degree at UT Cancún, where every project is an opportunity to apply real engineering principles.',
+      description: 'I am passionate about translating complex designs into clean code, building efficient front-end architectures, and developing premium dynamic interfaces using technologies like React and Next.js. I am currently pursuing my degree at UT Cancún, where every project is an opportunity to apply real-world engineering principles focused on user experience.',
     },
     skills: {
       eyebrow: 'SKILLS',
