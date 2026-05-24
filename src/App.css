@@ -722,17 +722,14 @@
   display: flex;
   align-items: center;
   gap: var(--space-5);
-  padding: var(--space-4) var(--space-5);
-  background: rgba(49, 62, 23, 0.1);
-  border: 1px solid rgba(76, 92, 45, 0.15);
-  border-radius: var(--radius-lg);
-  transition: all var(--duration-normal) var(--ease-default);
+  padding: var(--space-2) 0;
+  background: none;
+  border: none;
+  transition: transform var(--duration-normal) var(--ease-default);
 }
 
 .about__item:hover {
-  background: rgba(49, 62, 23, 0.2);
-  border-color: rgba(76, 92, 45, 0.4);
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
 .about__icon-wrapper {
