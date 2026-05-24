@@ -15,7 +15,10 @@ export interface Translation {
   about: {
     eyebrow: string;
     title: string;
-    description: string;
+    items: {
+      icon: string;
+      text: string;
+    }[];
   };
   skills: {
     eyebrow: string;
@@ -59,7 +62,11 @@ export const content: { es: Translation; en: Translation } = {
     about: {
       eyebrow: 'SOBRE MÍ',
       title: 'Un poco de contexto',
-      description: 'Me apasiona traducir diseños complejos en código limpio, construir arquitecturas front-end eficientes y desarrollar interfaces dinámicas de primera calidad utilizando tecnologías como React y Next.js. Actualmente curso mi carrera en la UT de Cancún, donde cada proyecto es una oportunidad para aplicar principios de ingeniería real centrados en la experiencia del usuario.',
+      items: [
+        { icon: 'code', text: 'Apasionado por traducir diseños complejos en código limpio y eficiente con React y Next.js.' },
+        { icon: 'map', text: 'Actualmente cursando Ingeniería en la UT de Cancún.' },
+        { icon: 'user', text: 'Centrado en aplicar principios de ingeniería real para potenciar la experiencia del usuario.' }
+      ]
     },
     skills: {
       eyebrow: 'HABILIDADES',
@@ -136,7 +143,11 @@ export const content: { es: Translation; en: Translation } = {
     about: {
       eyebrow: 'ABOUT ME',
       title: 'A bit of context',
-      description: 'I am passionate about translating complex designs into clean code, building efficient front-end architectures, and developing premium dynamic interfaces using technologies like React and Next.js. I am currently pursuing my degree at UT Cancún, where every project is an opportunity to apply real-world engineering principles focused on user experience.',
+      items: [
+        { icon: 'code', text: 'Passionate about translating complex designs into clean and efficient code with React and Next.js.' },
+        { icon: 'map', text: 'Currently pursuing an IT Engineering degree at UT Cancún.' },
+        { icon: 'user', text: 'Focused on applying real-world engineering principles to enhance user experiences.' }
+      ]
     },
     skills: {
       eyebrow: 'SKILLS',
