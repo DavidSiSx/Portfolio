@@ -14,7 +14,7 @@ const SECTION_TRANSFORMS: SectionTransform[] = [
   { pos: [1.4, 0, 0], rot: [0.5, 0.5, 0], scale: 1.3, color: 0xFFDE42, geometryType: 'torusKnot' },       // Hero: Glowing gold TorusKnot (Right)
   { pos: [1.3, 0.1, 0], rot: [0.8, -0.2, 0.5], scale: 1.2, color: 0x4C5C2D, geometryType: 'octahedron' }, // About: Olive Octahedron (Right)
   { pos: [-1.3, -0.1, 0], rot: [-0.3, 0.8, 0.2], scale: 1.1, color: 0xFFDE42, geometryType: 'icosahedron' }, // Skills: Golden Icosahedron (Left)
-  { pos: [-1.4, 0, 0], rot: [0.5, 0.5, 0.5], scale: 1.3, color: 0x00E5FF, geometryType: 'box' },           // Project 1 (Hexacore): Box (Left - Cyan)
+  { pos: [0, 0, 0], rot: [0.5, 0.5, 0.5], scale: 1.3, color: 0x00E5FF, geometryType: 'box' },           // Project 1 (Hexacore): Box (Center - Cyan, custom wave movement)
   { pos: [1.4, 0.1, 0], rot: [0.2, 0.9, 0.4], scale: 1.2, color: 0xFF69B4, geometryType: 'torus' },         // Project 2 (Invitaciones): Torus (Right - Pink)
   { pos: [-1.3, -0.1, 0], rot: [0.8, 0.3, 0.1], scale: 1.2, color: 0xAEEA00, geometryType: 'cone' },        // Project 3 (Smart Farm): Cone (Left - Green)
   { pos: [1.3, 0.1, 0], rot: [0.1, 0.5, 0.9], scale: 1.1, color: 0xFF3366, geometryType: 'cylinder' },     // Project 4 (Zotz): Cylinder (Right - Red)
@@ -224,8 +224,22 @@ export const ThreeCanvas: React.FC = () => {
           mesh.scale.set(finalScale, finalScale, finalScale);
           
           // Continuous rotation (multiplied by deltaTime for frame-rate independence)
-          mesh.rotation.y += 0.5 * deltaTime;
-          mesh.rotation.x += 0.25 * deltaTime;
+          mesh.rotation.y += 0.25 * deltaTime;
+          mesh.rotation.x += 0.12 * deltaTime;
+
+          // Special horizontal wave logic for Master Ball (index 3)
+          if (index === 3) {
+            const waveTime = time * 0.001;
+            // Horizontal sweep: oscillate X between -2.2 (left) and 2.2 (right)
+            const waveX = Math.sin(waveTime * 0.8) * 2.2;
+            // Vertical wave component: oscillate Y based on time
+            const waveY = Math.cos(waveTime * 2.0) * 0.4;
+            
+            mesh.position.x = waveX;
+            mesh.position.y = waveY;
+          } else {
+            mesh.position.set(0, 0, 0);
+          }
         } else {
           mesh.visible = false;
           mesh.scale.set(0, 0, 0);
