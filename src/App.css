@@ -714,8 +714,9 @@
   gap: var(--space-5);
   margin-top: var(--space-2);
   max-width: 680px;
-  margin-inline: auto;
   text-align: left;
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .about__item {
