@@ -1,4 +1,8 @@
-import React from 'react';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface HeroProps {
   t: {
@@ -10,11 +14,58 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ t }) => {
-  return (
-    <section id="hero" className="hero">
-      <div className="hero__bg-text">SIERRA SOSA</div>
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const bgTextRef = useRef<HTMLDivElement>(null);
 
-      <div className="hero__player-card">
+  useEffect(() => {
+    const section = sectionRef.current;
+    const card = cardRef.current;
+    const bgText = bgTextRef.current;
+    if (!section || !card || !bgText) return;
+
+    const ctx = gsap.context(() => {
+      // Player card shrinks and fades as user scrolls past hero
+      gsap.to(card, {
+        scale: 0.85,
+        opacity: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.5,
+        },
+      });
+
+      // Background text parallax
+      gsap.set(bgText, { xPercent: -50, yPercent: -50 });
+      gsap.fromTo(bgText,
+        { y: 0, opacity: 0.015, xPercent: -50, yPercent: -50 },
+        {
+          y: 150,
+          opacity: 0,
+          ease: 'none',
+          xPercent: -50,
+          yPercent: -50,
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.3,
+          },
+        }
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="hero" className="hero" ref={sectionRef}>
+      <div className="hero__bg-text" ref={bgTextRef}>SIERRA SOSA</div>
+
+      <div className="hero__player-card" ref={cardRef}>
         <div className="hero__album-wrapper">
           <div className="hero__album-glow"></div>
           <img src="/preview.gif" alt="Portfolio Live Preview" className="hero__album-art" />
