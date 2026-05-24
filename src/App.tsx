@@ -187,11 +187,24 @@ export default function App() {
 
   const t = content[lang]
 
-  // Track scroll for nav shadow
+  // Track scroll to show navbar when outside the hero
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10)
+    const handleScroll = () => {
+      const hero = document.getElementById('hero')
+      if (hero) {
+        const heroHeight = hero.offsetHeight
+        setScrolled(window.scrollY > heroHeight - 64)
+      } else {
+        setScrolled(window.scrollY > window.innerHeight - 64)
+      }
+    }
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
   }, [])
 
   return (
