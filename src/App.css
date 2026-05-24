@@ -135,8 +135,6 @@
   overflow: hidden;
   background: radial-gradient(circle at center, rgba(76, 92, 45, 0.15) 0%, rgba(27, 12, 12, 0) 70%), var(--color-shadow);
   z-index: 1;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .hero__bg-text {
@@ -436,8 +434,6 @@
   padding-block: var(--space-12);
   position: relative;
   scroll-margin-top: calc(var(--nav-height) - 1px);
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .section--alt {
@@ -757,7 +753,6 @@
   padding-block: var(--space-8);
   border-top: 1px solid var(--color-border-subtle);
   text-align: center;
-  scroll-snap-align: end;
 }
 
 .footer__text {
@@ -844,3 +839,123 @@
   color: var(--color-text);
 }
 
+/* --- Three.js Canvas Container --- */
+.three-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* --- Project Sections (Full screen per project) --- */
+.project-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  background: transparent;
+  z-index: 2;
+  padding-block: var(--space-12);
+}
+
+.project-section:nth-of-type(even) {
+  background: rgba(36, 18, 18, 0.25); /* Subtle dark contrast overlay */
+  backdrop-filter: blur(2px);
+}
+
+.project-section__container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-10);
+  align-items: center;
+  width: 100%;
+}
+
+.project-section--right .project-section__container {
+  grid-template-columns: 1fr 1.2fr;
+}
+
+.project-section__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 3;
+}
+
+.project-section--right .project-section__content {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.project-section__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-sun);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-4);
+}
+
+.project-section__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: var(--space-4);
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.project-section__desc {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+  max-width: 48ch;
+}
+
+.project-section__visual {
+  width: 100%;
+  max-width: 480px;
+  margin-inline: auto;
+  z-index: 3;
+}
+
+.project-section--right .project-section__visual {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+@media (max-width: 992px) {
+  .project-section {
+    padding-block: var(--space-16);
+  }
+
+  .project-section__container {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    text-align: center;
+  }
+  
+  .project-section--right .project-section__container {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-section__content {
+    align-items: center;
+  }
+  
+  .project-section--right .project-section__content {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  
+  .project-section--right .project-section__visual {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}

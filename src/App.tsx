@@ -8,6 +8,7 @@ import { Skills } from './components/sections/Skills';
 import { Projects } from './components/sections/Projects';
 import { Contact } from './components/sections/Contact';
 import { Footer } from './components/layout/Footer';
+import { ThreeCanvas } from './components/common/ThreeCanvas';
 
 export default function App() {
   const [lang, setLang] = useState<'es' | 'en'>('es');
@@ -70,6 +71,9 @@ export default function App() {
 
   return (
     <>
+      {/* Background WebGL Scene */}
+      <ThreeCanvas />
+
       {/* Navigation */}
       <Navbar lang={lang} toggleLang={toggleLang} scrolled={scrolled} t={t.nav} />
 

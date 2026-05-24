@@ -18,27 +18,30 @@ interface ProjectsProps {
 
 export const Projects: React.FC<ProjectsProps> = ({ t }) => {
   return (
-    <section id="projects" className="section section--alt">
-      <div className="container">
-        <div className="section__header reveal">
-          <p className="section__eyebrow">{t.eyebrow}</p>
-          <h2 className="section__title">{t.title}</h2>
-        </div>
-        <div className="projects-grid">
-          {t.items.map((project, index) => (
-            <article key={project.title} className={`project-card reveal reveal-delay-${(index % 3) + 1}`}>
-              <div className="project-card__preview">
-                <span className="project-card__preview-label">Preview</span>
-              </div>
-              <div className="project-card__body">
+    <>
+      {t.items.map((project, index) => {
+        const isRightAligned = index % 2 !== 0;
+        return (
+          <section
+            key={project.title}
+            id={index === 0 ? 'projects' : `project-${index}`}
+            className={`project-section ${isRightAligned ? 'project-section--right' : ''}`}
+          >
+            <div className="container project-section__container">
+              <div className="project-section__content reveal">
+                <span className="project-section__eyebrow">
+                  {t.eyebrow} — 0{index + 1}
+                </span>
                 <span className={`project-card__badge project-card__badge--${project.badge}`}>
                   {project.badgeLabel}
                 </span>
-                <h3 className="project-card__title">{project.title}</h3>
-                <p className="project-card__desc">{project.desc}</p>
+                <h2 className="project-section__title">{project.title}</h2>
+                <p className="project-section__desc">{project.desc}</p>
                 <div className="project-card__tech">
-                  {project.tech.map(techName => (
-                    <span key={techName} className="project-card__tech-tag">{techName}</span>
+                  {project.tech.map((techName) => (
+                    <span key={techName} className="project-card__tech-tag">
+                      {techName}
+                    </span>
                   ))}
                 </div>
                 <a
@@ -50,10 +53,16 @@ export const Projects: React.FC<ProjectsProps> = ({ t }) => {
                   GitHub <ArrowRightIcon width={14} height={14} />
                 </a>
               </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+
+              <div className="project-section__visual reveal reveal-delay-2">
+                <div className="project-card__preview">
+                  <span className="project-card__preview-label">Preview Active</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })}
+    </>
   );
 };
