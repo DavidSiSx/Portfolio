@@ -489,10 +489,6 @@ export const Skills: React.FC<SkillsProps> = ({ t }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
-  const [isShuffle, setIsShuffle] = useState<boolean>(false);
-  const [isRepeat, setIsRepeat] = useState<boolean>(false);
-  const [volume, setVolume] = useState<number>(75);
-  const [progress, setProgress] = useState<number>(26); // simulated initial progress percent
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
   const [mobileDetailsOpen, setMobileDetailsOpen] = useState<boolean>(false);
 
@@ -512,29 +508,6 @@ export const Skills: React.FC<SkillsProps> = ({ t }) => {
     descEs: 'Competencia técnica profesional en desarrollo de software moderno.',
     descEn: 'Professional software engineering technical competence.'
   };
-
-  // Simulate progress playback
-  useEffect(() => {
-    let timer: ReturnType<typeof setInterval>;
-    if (isPlaying) {
-      timer = setInterval(() => {
-        setProgress(prev => {
-          if (prev >= 100) {
-            if (isRepeat) {
-              return 0; // restart
-            } else {
-              // go to next track
-              handleNext();
-              return 0;
-            }
-          }
-          return prev + 1;
-        });
-      }, 1000);
-    }
-    return () => clearInterval(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPlaying, currentTrackIndex, isRepeat, filteredSkills]);
 
   // Stagger animation on grid updates
   useEffect(() => {
@@ -602,43 +575,16 @@ export const Skills: React.FC<SkillsProps> = ({ t }) => {
     setIsPlaying(!isPlaying);
   };
 
-  const handleNext = () => {
-    if (filteredSkills.length <= 1) return;
-    if (isShuffle) {
-      let randomIndex = currentTrackIndex;
-      while (randomIndex === currentTrackIndex) {
-        randomIndex = Math.floor(Math.random() * filteredSkills.length);
-      }
-      setCurrentTrackIndex(randomIndex);
-    } else {
-      setCurrentTrackIndex(prev => (prev + 1) % filteredSkills.length);
-    }
-    setProgress(0);
-  };
-
-  const handlePrev = () => {
-    if (filteredSkills.length <= 1) return;
-    setCurrentTrackIndex(prev => (prev - 1 + filteredSkills.length) % filteredSkills.length);
-    setProgress(0);
-  };
-
   const selectTrack = (trackName: string) => {
     const idx = filteredSkills.findIndex(s => s.name === trackName);
     if (idx !== -1) {
       setCurrentTrackIndex(idx);
       setIsPlaying(true);
-      setProgress(0);
+      setSidebarOpen(true);
+      if (window.innerWidth <= 768) {
+        setMobileDetailsOpen(true);
+      }
     }
-  };
-
-  // Format simulated duration based on progress percentage
-  // 3:00 total track time mock
-  const formatTime = (percent: number) => {
-    const totalSeconds = 180; // 3 minutes total
-    const currentSeconds = Math.floor((percent / 100) * totalSeconds);
-    const mins = Math.floor(currentSeconds / 60);
-    const secs = currentSeconds % 60;
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
   // Determine current category display label
@@ -828,193 +774,6 @@ export const Skills: React.FC<SkillsProps> = ({ t }) => {
               </div>
             </div>
           )}
-
-        </div>
-
-        {/* 3. Spotify Bottom Web Player Bar */}
-        <div className="skills-player">
-          
-          {/* Left Block: Track Thumbnail & Equalizer */}
-          <div 
-            className="skills-player__left"
-            onClick={() => {
-              if (window.innerWidth <= 768) {
-                setMobileDetailsOpen(true);
-              }
-            }}
-            style={{ cursor: 'pointer' }}
-          >
-            <div className="skills-player__thumbnail">
-              <SkillAlbumCover name={currentSkill.name} isActive={isPlaying} isPlaying={isPlaying} />
-            </div>
-            <div className="skills-player__track-details">
-              <span className="skills-player__track-name">{currentSkill.name}</span>
-              <span className="skills-player__track-artist">David Sierra Sosa</span>
-            </div>
-            
-            {/* Tiny playback active indicator */}
-            {isPlaying && (
-              <div className="skills-player__mini-eq">
-                <span className="mini-eq-bar bar-1"></span>
-                <span className="mini-eq-bar bar-2"></span>
-                <span className="mini-eq-bar bar-3"></span>
-              </div>
-            )}
-          </div>
-
-          {/* Center Block: Playback Controller & Progress Bar */}
-          <div className="skills-player__center">
-            
-            {/* Control buttons */}
-            <div className="skills-player__controls">
-              {/* Shuffle */}
-              <button 
-                className={`player-btn ${isShuffle ? 'active' : ''}`}
-                onClick={() => setIsShuffle(!isShuffle)}
-                aria-label="Shuffle"
-                title={isSpanish ? 'Aleatorio' : 'Shuffle'}
-              >
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
-                </svg>
-              </button>
-
-              {/* Prev */}
-              <button 
-                className="player-btn"
-                onClick={handlePrev}
-                aria-label="Previous"
-              >
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                  <polygon points="19,20 9,12 19,4" />
-                  <rect x="5" y="4" width="2" height="16" />
-                </svg>
-              </button>
-
-              {/* Play / Pause */}
-              <button 
-                className="player-btn player-btn--play"
-                onClick={handlePlayPause}
-                aria-label={isPlaying ? 'Pause' : 'Play'}
-              >
-                {isPlaying ? (
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <rect x="5" y="4" width="4" height="16" rx="1" />
-                    <rect x="15" y="4" width="4" height="16" rx="1" />
-                  </svg>
-                ) : (
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <polygon points="6,3 21,12 6,21" />
-                  </svg>
-                )}
-              </button>
-
-              {/* Next */}
-              <button 
-                className="player-btn"
-                onClick={handleNext}
-                aria-label="Next"
-              >
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                  <polygon points="5,4 15,12 5,20" />
-                  <rect x="17" y="4" width="2" height="16" />
-                </svg>
-              </button>
-
-              {/* Repeat */}
-              <button 
-                className={`player-btn ${isRepeat ? 'active' : ''}`}
-                onClick={() => setIsRepeat(!isRepeat)}
-                aria-label="Repeat"
-                title={isSpanish ? 'Repetir' : 'Repeat'}
-              >
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="17 1 21 5 17 9" />
-                  <path d="M3 11V9a4 4 0 0 1 4-4h14M7 23 3 19 7 15" />
-                  <path d="M21 13v2a4 4 0 0 1-4 4H3" />
-                </svg>
-              </button>
-            </div>
-
-            {/* Time progress bar */}
-            <div className="skills-player__progress-container">
-              <span className="time-display">{formatTime(progress)}</span>
-              <div 
-                className="skills-player__progress-bar"
-                onClick={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  const clickX = e.clientX - rect.left;
-                  const newPercent = Math.min(100, Math.max(0, (clickX / rect.width) * 100));
-                  setProgress(newPercent);
-                }}
-              >
-                <div 
-                  className="skills-player__progress-fill"
-                  style={{ width: `${progress}%` }}
-                >
-                  <div className="skills-player__progress-handle"></div>
-                </div>
-              </div>
-              <span className="time-display">3:00</span>
-            </div>
-
-          </div>
-
-          {/* Right Block: Volume & Sidebar Toggle Controls */}
-          <div className="skills-player__right">
-            
-            {/* Sidebar toggle */}
-            <button 
-              className={`player-btn ${sidebarOpen ? 'active' : ''}`}
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              title={isSpanish ? 'Información' : 'Now Playing View'}
-            >
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M9 3v18" />
-              </svg>
-            </button>
-
-            {/* Volume Icon */}
-            <button 
-              className="player-btn"
-              onClick={() => setVolume(prev => prev > 0 ? 0 : 75)}
-              aria-label="Volume"
-            >
-              {volume === 0 ? (
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" />
-                </svg>
-              ) : volume < 50 ? (
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07" />
-                </svg>
-              ) : (
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" />
-                </svg>
-              )}
-            </button>
-
-            {/* Volume slider */}
-            <div 
-              className="skills-player__volume-bar"
-              onClick={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const newVol = Math.min(100, Math.max(0, (clickX / rect.width) * 100));
-                setVolume(newVol);
-              }}
-            >
-              <div 
-                className="skills-player__volume-fill"
-                style={{ width: `${volume}%` }}
-              >
-                <div className="skills-player__volume-handle"></div>
-              </div>
-            </div>
-
-          </div>
 
         </div>
 
