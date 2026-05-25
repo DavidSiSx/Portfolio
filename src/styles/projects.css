@@ -620,6 +620,7 @@
   justify-content: center;
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
 }
 
 /* Background giant text — parallax target */
