@@ -55,19 +55,19 @@ export const content: { es: Translation; en: Translation } = {
   es: {
     nav: { about: 'Sobre Mí', skills: 'Habilidades', projects: 'Proyectos', contact: 'Contacto' },
     hero: {
-      eyebrow: 'Ingeniería en TI',
+      eyebrow: 'Desarrollo de Software Multiplataforma',
       title: 'DAVID SIERRA',
-      subtitle: 'Ingeniería en TI • Cancún, MX',
+      subtitle: 'Desarrollo de Software Multiplataforma • Cancún, MX',
       scrollText: 'SCROLL PARA MÁS DETALLES',
       status: 'REPRODUCIENDO AHORA'
     },
     about: {
       eyebrow: 'SOBRE MÍ',
       title: 'Un poco de contexto',
-      bio: 'Soy un desarrollador apasionado por construir experiencias digitales que combinen ingeniería sólida con diseño intencional. Actualmente curso Ingeniería en TI en la Universidad Tecnológica de Cancún, donde transformo ideas complejas en interfaces limpias y eficientes. Mi enfoque va más allá del código: busco entender los fundamentos, aplicar arquitectura limpia y crear productos que la gente realmente disfrute usar. Cada proyecto es una oportunidad para aprender algo nuevo y empujar mis límites técnicos.',
+      bio: 'Soy un desarrollador apasionado por construir experiencias digitales que combinen ingeniería sólida con diseño intencional. Actualmente curso Desarrollo de Software Multiplataforma en la Universidad Tecnológica de Cancún, donde transformo ideas complejas en interfaces limpias y eficientes. Mi enfoque va más allá del código: busco entender los fundamentos, aplicar arquitectura limpia y crear productos que la gente realmente disfrute usar. Cada proyecto es una oportunidad para aprender algo nuevo y empujar mis límites técnicos.',
       items: [
         { icon: 'code', text: 'Apasionado por traducir diseños complejos en código limpio y eficiente con React y Next.js.' },
-        { icon: 'map', text: 'Actualmente cursando Ingeniería en la UT de Cancún.' },
+        { icon: 'map', text: 'Actualmente cursando Desarrollo de Software Multiplataforma en la UT de Cancún.' },
         { icon: 'user', text: 'Centrado en aplicar principios de ingeniería real para potenciar la experiencia del usuario.' }
       ]
     },
@@ -138,19 +138,19 @@ export const content: { es: Translation; en: Translation } = {
   en: {
     nav: { about: 'About', skills: 'Skills', projects: 'Projects', contact: 'Contact' },
     hero: {
-      eyebrow: 'IT Engineering',
+      eyebrow: 'Multiplatform Software Development',
       title: 'DAVID SIERRA',
-      subtitle: 'IT Engineering • Cancún, MX',
+      subtitle: 'Multiplatform Software Dev • Cancún, MX',
       scrollText: 'SCROLL FOR CONTEXT',
       status: 'NOW PLAYING'
     },
     about: {
       eyebrow: 'ABOUT ME',
       title: 'A bit of context',
-      bio: 'I am a developer passionate about building digital experiences that combine solid engineering with intentional design. Currently pursuing an IT Engineering degree at the Technological University of Cancún, where I transform complex ideas into clean, efficient interfaces. My focus goes beyond code: I seek to understand fundamentals, apply clean architecture, and create products people genuinely enjoy using. Every project is an opportunity to learn something new and push my technical limits.',
+      bio: 'I am a developer passionate about building digital experiences that combine solid engineering with intentional design. Currently studying Multiplatform Software Development at the Technological University of Cancún, where I transform complex ideas into clean, efficient interfaces. My focus goes beyond code: I seek to understand fundamentals, apply clean architecture, and create products people genuinely enjoy using. Every project is an opportunity to learn something new and push my technical limits.',
       items: [
         { icon: 'code', text: 'Passionate about translating complex designs into clean and efficient code with React and Next.js.' },
-        { icon: 'map', text: 'Currently pursuing an IT Engineering degree at UT Cancún.' },
+        { icon: 'map', text: 'Currently studying Multiplatform Software Development at UT Cancún.' },
         { icon: 'user', text: 'Focused on applying real-world engineering principles to enhance user experiences.' }
       ]
     },
