@@ -8,7 +8,6 @@ import { About } from './components/sections/About';
 import { Skills } from './components/sections/Skills';
 import { Projects } from './components/sections/Projects';
 import { Contact } from './components/sections/Contact';
-import { Footer } from './components/layout/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,9 +44,6 @@ export default function App() {
       <Skills t={t.skills} />
       <Projects t={t.projects} />
       <Contact t={t.contact} />
-
-      {/* Footer */}
-      <Footer text={t.footer} />
     </>
   );
 }
