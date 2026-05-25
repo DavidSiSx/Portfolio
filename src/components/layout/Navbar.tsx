@@ -32,10 +32,6 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang, t }) => {
             {lang === 'es' ? 'EN' : 'ES'}
           </button>
         </div>
-
-        <button className="nav__mobile-toggle" aria-label="Menu">
-          <span /><span /><span />
-        </button>
       </div>
     </nav>
   );
