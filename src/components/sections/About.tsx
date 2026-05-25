@@ -96,22 +96,11 @@ export const About: React.FC<AboutProps> = ({ t }) => {
         <div className="about__visual" ref={visualRef}>
           <div className="about__photo-wrapper">
             <div className="about__photo-glow"></div>
-            {/* Placeholder — user can replace with their photo */}
-            <div style={{
-              width: '100%',
-              height: '100%',
-              background: 'linear-gradient(135deg, rgba(49, 62, 23, 0.4), rgba(27, 12, 12, 0.8))',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '4rem',
-              color: 'var(--color-sun)',
-              fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              letterSpacing: '-0.04em',
-            }}>
-              DS
-            </div>
+            <img 
+              src="/Landscape2.gif" 
+              alt="David Sierra Sosa" 
+              className="about__photo"
+            />
           </div>
         </div>
 
