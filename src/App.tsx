@@ -26,6 +26,7 @@ export default function App() {
       gestureOrientation: 'vertical',
       smoothWheel: true,
     });
+    (window as any).lenis = lenis;
 
     // Update ScrollTrigger on Lenis scroll
     lenis.on('scroll', ScrollTrigger.update);
@@ -49,6 +50,7 @@ export default function App() {
       showNavTrigger.kill();
       gsap.ticker.remove(updateRaf);
       lenis.destroy();
+      delete (window as any).lenis;
     };
   }, []);
 

@@ -44,7 +44,7 @@ export const About: React.FC<AboutProps> = ({ t }) => {
       const chars = bio.querySelectorAll('.char');
       gsap.fromTo(
         chars,
-        { opacity: 0.25 },
+        { opacity: 0.6 },
         {
           opacity: 1,
           stagger: 0.02,
@@ -97,7 +97,7 @@ export const About: React.FC<AboutProps> = ({ t }) => {
           <div className="about__photo-wrapper">
             <div className="about__photo-glow"></div>
             <img 
-              src={`${import.meta.env.BASE_URL}Landscape2.gif`} 
+              src={`${import.meta.env.BASE_URL}me.webp`} 
               alt="David Sierra Sosa" 
               className="about__photo"
             />

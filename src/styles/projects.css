@@ -67,6 +67,56 @@
   letter-spacing: -0.02em;
 }
 
+/* Tracklist Navigation pills */
+.projects__tracklist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-6);
+  z-index: 10;
+  position: relative;
+}
+
+.projects__track-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  background: rgba(242, 236, 223, 0.04);
+  border: 1px solid rgba(242, 236, 223, 0.12);
+  color: rgba(242, 236, 223, 0.55);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-default);
+}
+
+.projects__track-btn:hover {
+  border-color: rgba(242, 236, 223, 0.35);
+  color: rgba(242, 236, 223, 0.95);
+  background: rgba(242, 236, 223, 0.08);
+}
+
+.projects__track-btn.active {
+  background: var(--track-accent);
+  border-color: var(--track-accent);
+  color: #0b0b0b;
+  box-shadow: 0 0 16px var(--track-glow);
+}
+
+.projects__track-number {
+  font-weight: 800;
+  opacity: 0.75;
+}
+
+.projects__track-title {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
 .projects__info-stack {
   position: relative;
   width: 100%;

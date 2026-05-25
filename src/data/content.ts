@@ -63,7 +63,7 @@ export const content: { es: Translation; en: Translation } = {
     },
     about: {
       eyebrow: 'SOBRE MÍ',
-      title: 'Un poco de contexto',
+      title: 'Sobre mí',
       bio: 'Soy un desarrollador apasionado por construir experiencias digitales que combinen ingeniería sólida con diseño intencional. Actualmente curso Desarrollo de Software Multiplataforma en la Universidad Tecnológica de Cancún, donde transformo ideas complejas en interfaces limpias y eficientes. Mi enfoque va más allá del código: busco entender los fundamentos, aplicar arquitectura limpia y crear productos que la gente realmente disfrute usar. Cada proyecto es una oportunidad para aprender algo nuevo y empujar mis límites técnicos.',
       items: [
         { icon: 'code', text: 'Apasionado por traducir diseños complejos en código limpio y eficiente con React y Next.js.' },
@@ -146,7 +146,7 @@ export const content: { es: Translation; en: Translation } = {
     },
     about: {
       eyebrow: 'ABOUT ME',
-      title: 'A bit of context',
+      title: 'About me',
       bio: 'I am a developer passionate about building digital experiences that combine solid engineering with intentional design. Currently studying Multiplatform Software Development at the Technological University of Cancún, where I transform complex ideas into clean, efficient interfaces. My focus goes beyond code: I seek to understand fundamentals, apply clean architecture, and create products people genuinely enjoy using. Every project is an opportunity to learn something new and push my technical limits.',
       items: [
         { icon: 'code', text: 'Passionate about translating complex designs into clean and efficient code with React and Next.js.' },

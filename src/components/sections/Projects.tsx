@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRightIcon } from '../common/Icons';
@@ -169,6 +169,34 @@ const ProjectLabelIcon: React.FC<{ index: number }> = ({ index }) => {
 export const Projects: React.FC<ProjectsProps> = ({ t }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const desktopContainerRef = useRef<HTMLDivElement>(null);
+  const [activeTrack, setActiveTrack] = useState(0);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
+
+  const handleTrackClick = (index: number) => {
+    const tl = tlRef.current;
+    if (!tl || !tl.scrollTrigger) return;
+    const scrollPos = tl.scrollTrigger.labelToScroll(`project-${index}`);
+    
+    // Jump instantly using Lenis if active, otherwise fallback to window.scrollTo
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.scrollTo(scrollPos, { immediate: true });
+    } else {
+      window.scrollTo(0, scrollPos);
+    }
+
+    // Force GSAP ScrollTrigger to update instantly
+    tl.scrollTrigger.update();
+    
+    // Force the scrub tween to complete instantly
+    const scrubTween = tl.scrollTrigger.getTween();
+    if (scrubTween) {
+      scrubTween.progress(1);
+    }
+
+    // Update active track indicator instantly
+    setActiveTrack(index);
+  };
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -200,6 +228,7 @@ export const Projects: React.FC<ProjectsProps> = ({ t }) => {
             invalidateOnRefresh: true,
           },
         });
+        tlRef.current = tl;
 
         // Set initial positions
         gsap.set(vinyls[0], { x: 0, y: 0, scale: 1, rotation: 0, opacity: 1 });
@@ -222,6 +251,13 @@ export const Projects: React.FC<ProjectsProps> = ({ t }) => {
         const playDuration = 1.5;
 
         for (let i = 0; i < total; i++) {
+          tl.addLabel(`project-${i}`);
+
+          const index = i;
+          tl.call(() => {
+            setActiveTrack(index);
+          }, [], `project-${index}`);
+
           // Play current vinyl (rotation scrub)
           tl.to(vinyls[i], {
             rotation: '+=720',
@@ -344,6 +380,28 @@ export const Projects: React.FC<ProjectsProps> = ({ t }) => {
               <div className="projects__header">
                 <p className="projects__eyebrow">{t.eyebrow}</p>
                 <h2 className="projects__title">{t.title}</h2>
+              </div>
+
+              {/* Tracklist Navigation */}
+              <div className="projects__tracklist">
+                {t.items.map((project, index) => {
+                  const isActive = index === activeTrack;
+                  const theme = PROJECT_THEMES[index % PROJECT_THEMES.length];
+                  return (
+                    <button
+                      key={`track-${project.title}`}
+                      className={`projects__track-btn ${isActive ? 'active' : ''}`}
+                      onClick={() => handleTrackClick(index)}
+                      style={{
+                        '--track-accent': theme['--project-accent'],
+                        '--track-glow': theme['--project-glow']
+                      } as React.CSSProperties}
+                    >
+                      <span className="projects__track-number">{`0${index + 1}`}</span>
+                      <span className="projects__track-title">{project.title}</span>
+                    </button>
+                  );
+                })}
               </div>
               
               <div className="projects__info-stack">

@@ -89,7 +89,7 @@
 /* Individual characters for the text-reveal effect */
 .about__bio .char {
   display: inline-block;
-  opacity: 0.25;
+  opacity: 0.6;
   color: var(--color-text);
   will-change: opacity;
 }
