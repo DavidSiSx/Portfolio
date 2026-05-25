@@ -41,9 +41,8 @@ export const Contact: React.FC<ContactProps> = ({ t }) => {
           ease: 'power3.out',
           scrollTrigger: {
             trigger: section,
-            start: 'top 80%',
-            end: 'top 30%',
-            scrub: 0.5,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
           },
         }
       );
@@ -60,9 +59,8 @@ export const Contact: React.FC<ContactProps> = ({ t }) => {
           ease: 'none',
           scrollTrigger: {
             trigger: section,
-            start: 'top 85%',
-            end: 'bottom bottom',
-            scrub: 0.5,
+            start: 'top 90%',
+            toggleActions: 'play none none reverse',
           },
         }
       );
