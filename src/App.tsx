@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 import { content } from './data/content';
 import { Navbar } from './components/layout/Navbar';
 import { Hero } from './components/sections/Hero';
@@ -16,6 +18,25 @@ export default function App() {
   const t = content[lang];
 
   useEffect(() => {
+    // Initialize Lenis smooth scroll
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+    });
+
+    // Update ScrollTrigger on Lenis scroll
+    lenis.on('scroll', ScrollTrigger.update);
+
+    // Sync GSAP ticker with Lenis raf
+    const updateRaf = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(updateRaf);
+    gsap.ticker.lagSmoothing(0);
+
     // Show navbar when scrolling past the hero section
     const showNavTrigger = ScrollTrigger.create({
       trigger: '#hero',
@@ -26,6 +47,8 @@ export default function App() {
 
     return () => {
       showNavTrigger.kill();
+      gsap.ticker.remove(updateRaf);
+      lenis.destroy();
     };
   }, []);
 
