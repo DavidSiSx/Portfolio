@@ -44,7 +44,6 @@ export const About: React.FC<AboutProps> = ({ t }) => {
     const ctx = gsap.context(() => {
       // Background text parallax
       if (bgText) {
-        gsap.set(bgText, { xPercent: -50, yPercent: -50 });
         const tlText = gsap.timeline({
           scrollTrigger: {
             trigger: section,
@@ -54,8 +53,8 @@ export const About: React.FC<AboutProps> = ({ t }) => {
           }
         });
         tlText.fromTo(bgText,
-          { y: -150, xPercent: -50, yPercent: -50 },
-          { y: 150, ease: 'none', xPercent: -50, yPercent: -50 },
+          { y: -150 },
+          { y: 150, ease: 'none' },
           0
         );
         tlText.fromTo(bgText,
@@ -120,8 +119,10 @@ export const About: React.FC<AboutProps> = ({ t }) => {
   return (
     <section id="about" className="about" ref={sectionRef}>
       {/* Parallax Background Giant Text */}
-      <div className="about__bg-text" ref={bgTextRef}>
-        CONTEXT
+      <div className="about__bg-text-wrapper">
+        <div className="about__bg-text" ref={bgTextRef}>
+          CONTEXT
+        </div>
       </div>
 
       <div className="about__container">

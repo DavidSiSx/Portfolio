@@ -1,0 +1,197 @@
+/* ================================================================
+   about.css — About "Sobre Mí" Section (Light Sand Editorial Design)
+   Asymmetric layout with high contrast light-to-dark transition
+   ================================================================ */
+
+.about {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--space-16);
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg); /* Dark matte background */
+  scroll-margin-top: calc(var(--nav-height) - 1px);
+}
+
+.about__container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+  display: grid;
+  grid-template-columns: 0.45fr 0.55fr;
+  gap: var(--space-10);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Left: Photo/Avatar with parallax */
+.about__visual {
+  position: relative;
+  will-change: transform;
+}
+
+.about__photo-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid rgba(242, 236, 223, 0.15);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.about__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Right: Text reveal content */
+.about__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.about__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-sun); /* Bright gold eyebrow */
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.about__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text); /* Light text tone */
+}
+
+/* Text reveal paragraph — each char/word wrapped by GSAP */
+.about__bio {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: rgba(242, 236, 223, 0.8); /* Readable warm sand text */
+  max-width: 52ch;
+}
+
+/* Individual characters for the text-reveal effect */
+.about__bio .char {
+  display: inline-block;
+  opacity: 0.25;
+  color: var(--color-text);
+  will-change: opacity;
+}
+
+/* Whitespace character — must preserve spacing */
+.about__bio .whitespace {
+  display: inline;
+  width: 0.3em;
+}
+
+/* Info items below bio */
+.about__details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.about__detail-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.about__detail-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  background: rgba(242, 236, 223, 0.08); /* Soft sand background */
+  border: 1px solid rgba(242, 236, 223, 0.2);
+  color: var(--color-sun);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.about__detail-text {
+  font-size: 0.9375rem;
+  color: rgba(242, 236, 223, 0.85); /* Highly readable warm sand */
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 768px) {
+  .about__container {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    text-align: center;
+  }
+
+  .about__visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .about__photo-wrapper {
+    max-width: 260px;
+  }
+
+  .about__content {
+    align-items: center;
+  }
+
+  .about__bio {
+    text-align: center;
+  }
+
+  .about__detail-item {
+    justify-content: center;
+  }
+}
+
+.about__bg-text-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Background giant text — parallax target */
+.about__bg-text {
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 20vw, 24rem);
+  font-weight: 900;
+  color: rgba(242, 236, 223, 0.015); /* Very subtle light sand matte */
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  position: relative;
+  will-change: transform;
+}

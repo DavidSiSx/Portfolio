@@ -1,0 +1,639 @@
+/* ================================================================
+   projects.css — Turntable (Tocadiscos) split layout CSS stylesheet
+   ================================================================ */
+
+.projects {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-bg);
+  scroll-margin-top: calc(var(--nav-height) - 1px);
+}
+
+/* ================================================================
+   1. Desktop Layout (min-width: 769px)
+   ================================================================ */
+.projects__desktop-view {
+  display: block;
+  width: 100%;
+}
+
+.projects__pinned {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding-block: var(--space-8);
+}
+
+.projects__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  margin-inline: auto;
+  gap: var(--space-12);
+  position: relative;
+}
+
+/* --- Left Side: Info Deck --- */
+.projects__info-side {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.projects__header {
+  margin-bottom: var(--space-2);
+}
+
+.projects__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-sun);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.projects__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.projects__info-stack {
+  position: relative;
+  width: 100%;
+  height: 340px; /* Comfortable height for descriptions */
+}
+
+.projects__info-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-6);
+  background: rgba(49, 62, 23, 0.04);
+  border: 1px solid var(--project-border, rgba(76, 92, 45, 0.25));
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  will-change: opacity, transform;
+}
+
+.projects__info-card:hover {
+  border-color: var(--project-border-hover, rgba(76, 92, 45, 0.6));
+  background: rgba(49, 62, 23, 0.08);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55),
+              0 0 25px var(--project-glow, rgba(255, 222, 66, 0.04));
+}
+
+.projects__info-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--project-badge-bg, rgba(255, 222, 66, 0.10));
+  color: var(--project-accent, var(--color-sun));
+  border: 1px solid var(--project-border, rgba(255, 222, 66, 0.20));
+}
+
+.projects__info-title {
+  font-size: 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: var(--space-2);
+}
+
+.projects__info-desc {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.projects__info-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.projects__info-tech-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background: rgba(27, 12, 12, 0.6);
+  color: var(--color-text-muted);
+  border: 1px solid var(--project-border, rgba(76, 92, 45, 0.4));
+}
+
+.projects__info-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--project-accent, var(--color-sun));
+  transition: all var(--duration-fast) var(--ease-default);
+}
+
+.projects__info-link:hover {
+  color: var(--project-accent, var(--color-highlight));
+  transform: translateX(3px);
+}
+
+.projects__info-link svg {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+
+.projects__info-link:hover svg {
+  transform: translateX(2px);
+}
+
+
+/* --- Right Side: Player Side --- */
+.projects__player-side {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.projects__player-deck {
+  position: relative;
+  width: 540px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+}
+
+/* --- Turntable Player (Right) --- */
+.projects__turntable {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  width: 360px;
+  height: 360px;
+  background: linear-gradient(135deg, #1b0c0c 0%, #0d0404 100%);
+  border: 6px solid #313e17;
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85),
+              inset 0 0 20px rgba(0, 0, 0, 0.9);
+  z-index: 2;
+  overflow: visible; /* Allows tonearm to pivot */
+}
+
+/* Platter outer edge */
+.projects__turntable-platter-ring {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: #000;
+  border: 4px solid #222;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.8),
+              inset 0 0 15px rgba(0, 0, 0, 0.9);
+}
+
+/* Platter spinning base */
+.projects__turntable-platter {
+  position: absolute;
+  top: 45px;
+  left: 45px;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #444 0%, #292929 30%, #151515 70%, #080808 100%);
+  border: 1.5px solid #444;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+}
+
+/* Platter spindle pin */
+.projects__turntable-spindle {
+  position: absolute;
+  top: calc(50% - 4px);
+  left: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d4d4d4;
+  border: 1px solid #777;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Vinyl Record inside Turntable --- */
+.projects__vinyl {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    #2a2a2a 0%, 
+    #151515 15%, 
+    #0a0a0a 35%, 
+    #1d1d1d 55%, 
+    #050505 70%, 
+    #181818 85%, 
+    #020202 100%
+  );
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8),
+              inset 0 0 1px rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  will-change: transform;
+}
+
+/* Concentric grooved tracks */
+.projects__vinyl-grooves {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.5) 3px,
+    rgba(255, 255, 255, 0.02) 4px
+  );
+  opacity: 0.85;
+}
+
+/* Conic shiny reflection */
+.projects__vinyl-conic {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 45deg at 50% 50%,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.04) 30deg,
+    transparent 65deg,
+    transparent 180deg,
+    rgba(255, 255, 255, 0.04) 210deg,
+    transparent 245deg,
+    transparent 360deg
+  );
+  mix-blend-mode: overlay;
+}
+
+/* Colored Label */
+.projects__vinyl-label {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: var(--project-accent);
+  color: #0b0b0b;
+  border: 3.5px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 4;
+}
+
+/* Center Hole */
+.projects__vinyl-centerhole {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 2px solid #000;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9);
+  z-index: 5;
+}
+
+/* --- Tonearm (Stylus brazo) --- */
+.projects__tonearm-wrapper {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  width: 80px;
+  height: 200px;
+  transform-origin: 50px 50px; /* Pivot anchor */
+  z-index: 5;
+  will-change: transform;
+}
+
+.projects__tonearm-svg {
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 8px 6px rgba(0, 0, 0, 0.5));
+}
+
+/* --- Sleeves Stack (Left of Turntable) --- */
+.projects__sleeves-stack {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  width: 260px;
+  height: 260px;
+  z-index: 1;
+}
+
+.projects__sleeve-jacket {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(25, 20, 20, 0.98), rgba(12, 8, 8, 1));
+  border: 1px solid var(--project-border, rgba(76, 92, 45, 0.3));
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: -10px 15px 30px rgba(0, 0, 0, 0.65), 
+              inset 0 0 20px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: opacity, transform;
+}
+
+/* Dot grid overlay for sleeves */
+.projects__sleeve-jacket::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--project-border, rgba(76, 92, 45, 0.15)) 1px, transparent 1px);
+  background-size: 16px 16px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Cardboard pouch right-side cut */
+.projects__sleeve-jacket::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 60px;
+  background: var(--color-bg);
+  border-radius: 50% / 10%;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 4px 0 8px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+.projects__sleeve-tracknumber {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--project-accent);
+  opacity: 0.65;
+  letter-spacing: 0.12em;
+}
+
+.projects__sleeve-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* PokeBattle preview container inside jacket */
+.poke-battle-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: var(--space-4);
+  background: radial-gradient(circle at center, #1b2612 0%, #0d1209 100%);
+}
+
+/* --- Progress indicator --- */
+.projects__progress {
+  position: absolute;
+  bottom: var(--space-4);
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: rgba(76, 92, 45, 0.2);
+  border-radius: var(--radius-full);
+}
+
+.projects__progress-fill {
+  height: 100%;
+  background: var(--color-sun);
+  border-radius: var(--radius-full);
+  width: 0%;
+  will-change: width;
+}
+
+/* ================================================================
+   2. Mobile Layout (max-width: 768px)
+   ================================================================ */
+.projects__mobile-view {
+  display: none;
+  width: 100%;
+  padding-block: var(--space-12);
+}
+
+@keyframes mobile-spin {
+  from {
+    transform: translateY(-70px) rotate(0deg);
+  }
+  to {
+    transform: translateY(-70px) rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .projects__desktop-view {
+    display: none;
+  }
+
+  .projects__mobile-view {
+    display: block;
+  }
+
+  .projects__mobile-header {
+    padding-inline: 8%;
+    margin-bottom: var(--space-10);
+  }
+
+  .projects__mobile-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-12);
+    padding-inline: var(--space-4);
+  }
+
+  .projects__mobile-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+    padding-top: 80px; /* Space for the peeking vinyl */
+  }
+
+  /* Peeking spinning record */
+  .projects__mobile-vinyl {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 120px);
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+      #2c2c2c 0%, 
+      #181818 15%, 
+      #0c0c0c 35%, 
+      #1d1d1d 55%, 
+      #0a0a0a 70%, 
+      #1a1a1a 85%, 
+      #030303 100%
+    );
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7),
+                inset 0 0 1px rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    transform: translateY(-70px);
+    animation: mobile-spin 15s linear infinite;
+  }
+
+  .projects__mobile-sleeve {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    background: linear-gradient(135deg, rgba(25, 20, 20, 0.95), rgba(12, 8, 8, 0.98));
+    border: 1px solid var(--project-border, rgba(76, 92, 45, 0.3));
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 
+                inset 0 0 15px rgba(0, 0, 0, 0.8);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -40px; /* Overlap with mobile info card */
+  }
+
+  .projects__mobile-sleeve::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--project-border, rgba(76, 92, 45, 0.15)) 1px, transparent 1px);
+    background-size: 16px 16px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .projects__mobile-info {
+    position: relative;
+    width: 300px;
+    min-height: 260px;
+    padding: var(--space-6);
+    background: rgba(49, 62, 23, 0.05);
+    border: 1px solid var(--project-border, rgba(76, 92, 45, 0.25));
+    border-radius: var(--radius-xl);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    z-index: 3;
+  }
+
+  .projects__mobile-title {
+    font-size: 1.25rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .projects__mobile-desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .projects__mobile-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .projects__mobile-tech-tag {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    background: rgba(27, 12, 12, 0.6);
+    color: var(--color-text-muted);
+    border: 1px solid var(--project-border, rgba(76, 92, 45, 0.4));
+  }
+
+  .projects__mobile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--project-accent, var(--color-sun));
+  }
+}
+
+.projects__bg-text-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Background giant text — parallax target */
+.projects__bg-text {
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 20vw, 24rem);
+  font-weight: 900;
+  color: rgba(242, 236, 223, 0.015); /* Very subtle light sand matte overlay */
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  position: relative;
+  will-change: transform;
+}

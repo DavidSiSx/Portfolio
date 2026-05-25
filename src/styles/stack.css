@@ -1,0 +1,791 @@
+/* ================================================================
+   stack.css — Tech Stack / Spotify-themed Skills Section
+   Interactive player layouts + premium Spotify glassmorphism
+   ================================================================ */
+
+.skills-section {
+  min-height: 100vh;
+  width: 100%;
+  padding-top: var(--space-16);
+  padding-bottom: calc(var(--space-16) + 40px); /* extra space for sticky player */
+  position: relative;
+  overflow: hidden;
+  background: #D4CBB9; /* Matte warm sand background */
+  scroll-margin-top: calc(var(--nav-height) - 1px);
+}
+
+/* Spotlight Ambient Glow behind current playing card */
+.skills-section__spotlight {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  opacity: 0.03; /* Extremely subtle warm glow to preserve matte finish */
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  transition: background 1s ease;
+  will-change: background, transform;
+}
+
+.skills-section__bg-text-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Parallax Background Giant Text */
+.skills-section__bg-text {
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 20vw, 24rem);
+  font-weight: 900;
+  color: rgba(27, 12, 12, 0.06); /* Darker and more visible */
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  position: relative;
+  will-change: transform;
+}
+
+.skills-section__container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+  position: relative;
+  z-index: 1;
+}
+
+/* Header & Filter Pills */
+.skills-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--space-8);
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.skills-section__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-forest); /* Deep contrast green */
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.skills-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-shadow); /* Dark charcoal/brown */
+}
+
+.skills-section__filters {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* Spotify capsule filter button */
+.filter-pill {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(27, 12, 12, 0.06); /* Soft dark background */
+  color: var(--color-shadow);
+  border: 1px solid rgba(27, 12, 12, 0.08);
+  transition: background var(--duration-fast) var(--ease-default),
+              transform var(--duration-fast) var(--ease-default),
+              border-color var(--duration-fast) var(--ease-default);
+}
+
+.filter-pill:hover {
+  background: rgba(27, 12, 12, 0.12);
+  transform: scale(1.02);
+}
+
+.filter-pill.active {
+  background: var(--color-shadow);
+  color: var(--color-sun);
+  border-color: var(--color-shadow);
+  font-weight: 700;
+}
+
+/* Main Layout Grid + Sidebar */
+.skills-section__layout {
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+  margin-bottom: var(--space-12);
+}
+
+.skills-section__grid-wrapper {
+  flex: 1;
+}
+
+.skills-section__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: var(--space-4);
+}
+
+/* Spotify Album Card with 3D Tilt perspective support */
+.skills__album-card {
+  background: rgba(255, 255, 255, 0.35); /* Translucent matte white */
+  border: 1px solid rgba(27, 12, 12, 0.08);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  box-shadow: 0 8px 24px rgba(27, 12, 12, 0.05); /* Soft shadow for depth */
+  transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.3s ease,
+              background 0.3s ease,
+              border-color 0.3s ease;
+  will-change: transform, box-shadow;
+  transform-style: preserve-3d;
+}
+
+.skills__album-card:hover {
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 16px 36px rgba(27, 12, 12, 0.12); /* Deep shadows on hover */
+}
+
+.skills__album-card.active {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: var(--color-shadow);
+}
+
+/* Card Cover Wrapper - Float layer inside card */
+.skills__album-cover-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateZ(20px); /* 3D layer lift */
+  transform-style: preserve-3d;
+}
+
+.skills__album-cover-gradient {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-style: preserve-3d;
+}
+
+.skills__album-card:hover .skills__album-cover-gradient {
+  transform: scale(1.02);
+}
+
+.skills__album-cover-logo {
+  width: 50%;
+  height: 50%;
+  color: var(--color-text);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+/* Hover play button */
+.skills__album-play-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  background: var(--color-sun);
+  color: var(--color-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  transition: opacity 0.25s var(--ease-default),
+              transform 0.25s var(--ease-default),
+              background 0.2s ease;
+  z-index: 2;
+}
+
+.skills__album-play-btn:hover {
+  background: var(--color-highlight);
+  transform: translateY(0) scale(1.08) !important;
+}
+
+/* Keep play button visible on active card or on hover */
+.skills__album-card:hover .skills__album-play-btn,
+.skills__album-card.active .skills__album-play-btn {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Simulated Equalizer bars overlay */
+.skills__equalizer-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  padding-bottom: 24px;
+  backdrop-filter: blur(1px);
+  pointer-events: none;
+}
+
+.eq-bar {
+  width: 3px;
+  height: 6px;
+  background-color: var(--color-sun);
+  border-radius: 2px;
+}
+
+.skills__album-card.active .eq-bar {
+  animation: equalize 1s ease-in-out infinite alternate;
+}
+
+.bar-1 { animation-delay: 0.1s; }
+.bar-2 { animation-delay: 0.4s; animation-duration: 0.7s !important; }
+.bar-3 { animation-delay: 0.2s; animation-duration: 1.2s !important; }
+.bar-4 { animation-delay: 0.5s; animation-duration: 0.8s !important; }
+
+@keyframes equalize {
+  0% { height: 6px; }
+  100% { height: 32px; }
+}
+
+/* Card details */
+.skills__album-details {
+  margin-top: 8px;
+}
+
+.skills__album-name {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-shadow); /* Dark names */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.skills__album-meta {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--color-olive); /* Olive/forest subtext */
+}
+
+/* Now Playing Sidebar Panel */
+.skills-section__sidebar {
+  width: 320px;
+  position: sticky;
+  top: calc(var(--nav-height) + 16px);
+  z-index: 10;
+}
+
+.skills-sidebar__card {
+  background: rgba(27, 12, 12, 0.95); /* Deep matte dark shadow panel */
+  border: 1px solid rgba(76, 92, 45, 0.4);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 24px 50px rgba(27, 12, 12, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.skills-sidebar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.skills-sidebar__panel-title {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text);
+}
+
+.skills-sidebar__close-btn {
+  color: var(--color-text-subtle);
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.skills-sidebar__close-btn:hover {
+  color: var(--color-text);
+}
+
+.skills-sidebar__large-cover {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  margin-bottom: var(--space-4);
+  position: relative;
+  overflow: hidden;
+}
+
+.skills-sidebar__large-logo {
+  width: 48%;
+  height: 48%;
+  color: var(--color-text);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
+}
+
+.skills-sidebar__track-info {
+  margin-bottom: var(--space-4);
+}
+
+.skills-sidebar__track-title {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+
+.skills-sidebar__track-category {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-sun);
+  text-transform: uppercase;
+}
+
+/* Mastery indicator (Spotify track rating style) */
+.skills-sidebar__mastery {
+  margin-bottom: var(--space-4);
+}
+
+.skills-sidebar__mastery-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+  font-family: var(--font-body);
+}
+
+.skills-sidebar__mastery-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.skills-sidebar__mastery-fill {
+  height: 100%;
+  background: var(--color-sun);
+  border-radius: var(--radius-full);
+}
+
+.skills-sidebar__about {
+  margin-bottom: var(--space-4);
+}
+
+.skills-sidebar__about h5,
+.skills-sidebar__projects h5 {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+.skills-sidebar__about p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.skills-sidebar__project-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.project-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+
+.project-chip:hover {
+  background: rgba(255, 222, 66, 0.05);
+  border-color: var(--color-sun);
+  color: var(--color-sun);
+}
+
+/* ================================================================
+   Spotify Bottom Web Player Footer
+   ================================================================ */
+.skills-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: rgba(27, 12, 12, 0.85);
+  border-top: 1px solid rgba(76, 92, 45, 0.25);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: var(--space-6);
+  z-index: 999;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+  animation: playerSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes playerSlideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Left block: Track details */
+.skills-player__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 180px;
+  width: 30%;
+}
+
+.skills-player__thumbnail {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.skills-player__thumbnail-logo {
+  width: 48%;
+  height: 48%;
+  color: var(--color-text);
+}
+
+.skills-player__track-details {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.skills-player__track-name {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.skills-player__track-artist {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* Mini playing equalizer indicator */
+.skills-player__mini-eq {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+  margin-left: 8px;
+}
+
+.mini-eq-bar {
+  width: 2px;
+  height: 3px;
+  background-color: var(--color-sun);
+  animation: miniEqualize 0.8s ease-in-out infinite alternate;
+}
+
+.skills-player__mini-eq .bar-1 { animation-delay: 0.1s; }
+.skills-player__mini-eq .bar-2 { animation-delay: 0.3s; animation-duration: 0.5s !important; }
+.skills-player__mini-eq .bar-3 { animation-delay: 0.2s; animation-duration: 0.7s !important; }
+
+@keyframes miniEqualize {
+  0% { height: 3px; }
+  100% { height: 12px; }
+}
+
+/* Center block: Playback controller */
+.skills-player__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 40%;
+}
+
+.skills-player__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-btn {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.player-btn:hover {
+  color: var(--color-text);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.player-btn.active {
+  color: var(--color-sun);
+  opacity: 1;
+}
+
+.player-btn--play {
+  background: var(--color-text);
+  color: var(--color-shadow);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  opacity: 1;
+}
+
+.player-btn--play:hover {
+  background: var(--color-sun);
+  color: var(--color-shadow);
+  transform: scale(1.08);
+}
+
+/* Progress bar container */
+.skills-player__progress-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.time-display {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-text-subtle);
+  min-width: 30px;
+  text-align: center;
+}
+
+.skills-player__progress-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  position: relative;
+  cursor: pointer;
+}
+
+.skills-player__progress-fill {
+  height: 100%;
+  background: var(--color-text);
+  border-radius: var(--radius-full);
+  position: relative;
+  transition: background 0.1s ease;
+}
+
+.skills-player__progress-bar:hover .skills-player__progress-fill {
+  background: var(--color-sun);
+}
+
+/* Hover-triggered slider handle */
+.skills-player__progress-handle,
+.skills-player__volume-handle {
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: transform 0.15s ease;
+  pointer-events: none;
+}
+
+.skills-player__progress-bar:hover .skills-player__progress-handle,
+.skills-player__volume-bar:hover .skills-player__volume-handle {
+  transform: translateY(-50%) scale(1);
+}
+
+/* Right block: volume + layout */
+.skills-player__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  min-width: 180px;
+  width: 30%;
+}
+
+.skills-player__volume-bar {
+  width: 90px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  position: relative;
+  cursor: pointer;
+}
+
+.skills-player__volume-fill {
+  height: 100%;
+  background: var(--color-text);
+  border-radius: var(--radius-full);
+  position: relative;
+}
+
+.skills-player__volume-bar:hover .skills-player__volume-fill {
+  background: var(--color-sun);
+}
+
+/* ================================================================
+   Responsive Queries
+   ================================================================ */
+@media (max-width: 1024px) {
+  /* Hide sidebar on tablet/mobile and stretch grid */
+  .skills-section__sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-section {
+    padding-top: var(--space-12);
+    padding-bottom: 120px; /* space for mobile player bar */
+  }
+
+  .skills-section__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .skills-section__grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+
+  .skills__album-card {
+    padding: 10px;
+  }
+
+  .skills__album-cover-wrapper {
+    margin-bottom: 8px;
+  }
+
+  .skills__album-play-btn {
+    width: 36px;
+    height: 36px;
+    bottom: 6px;
+    right: 6px;
+  }
+
+  .skills__album-name {
+    font-size: 0.875rem;
+  }
+
+  /* Compact Player layout for mobile */
+  .skills-player {
+    height: 70px;
+    padding-inline: 16px;
+  }
+
+  .skills-player__left {
+    width: 65%;
+    min-width: 0;
+  }
+
+  .skills-player__thumbnail {
+    width: 44px;
+    height: 44px;
+  }
+
+  .skills-player__track-details {
+    width: 70%;
+  }
+
+  .skills-player__center {
+    width: 35%;
+    align-items: flex-end;
+  }
+
+  .skills-player__controls {
+    /* Hide optional controls to keep play/next/prev */
+    gap: 12px;
+  }
+
+  .player-btn[title="Aleatorio"],
+  .player-btn[title="Repetir"],
+  .player-btn[title="Shuffle"],
+  .player-btn[title="Repeat"] {
+    display: none;
+  }
+
+  .skills-player__progress-container {
+    display: none; /* Hide progress bar track on mobile */
+  }
+
+  .skills-player__right {
+    display: none; /* Hide volume controls on mobile */
+  }
+}

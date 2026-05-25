@@ -39,15 +39,12 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
       });
 
       // Background text parallax
-      gsap.set(bgText, { xPercent: -50, yPercent: -50 });
       gsap.fromTo(bgText,
-        { y: 0, opacity: 0.015, xPercent: -50, yPercent: -50 },
+        { y: 0, opacity: 0.015 },
         {
           y: 150,
           opacity: 0,
           ease: 'none',
-          xPercent: -50,
-          yPercent: -50,
           scrollTrigger: {
             trigger: section,
             start: 'top top',
@@ -63,7 +60,9 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
 
   return (
     <section id="hero" className="hero" ref={sectionRef}>
-      <div className="hero__bg-text" ref={bgTextRef}>SIERRA SOSA</div>
+      <div className="hero__bg-text-wrapper">
+        <div className="hero__bg-text" ref={bgTextRef}>SIERRA SOSA</div>
+      </div>
 
       <div className="hero__player-card" ref={cardRef}>
         <div className="hero__album-wrapper">

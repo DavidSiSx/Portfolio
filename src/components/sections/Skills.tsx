@@ -420,7 +420,6 @@ export const Skills: React.FC<SkillsProps> = ({ t }) => {
 
     const ctx = gsap.context(() => {
       if (bgText) {
-        gsap.set(bgText, { xPercent: -50, yPercent: -50 });
         const tlText = gsap.timeline({
           scrollTrigger: {
             trigger: section,
@@ -430,8 +429,8 @@ export const Skills: React.FC<SkillsProps> = ({ t }) => {
           }
         });
         tlText.fromTo(bgText,
-          { y: -150, xPercent: -50, yPercent: -50 },
-          { y: 150, ease: 'none', xPercent: -50, yPercent: -50 },
+          { y: -150 },
+          { y: 150, ease: 'none' },
           0
         );
         tlText.fromTo(bgText,
@@ -519,8 +518,10 @@ export const Skills: React.FC<SkillsProps> = ({ t }) => {
       <div className="skills-section__spotlight" ref={spotlightRef} style={{ background: metadata.gradient }}></div>
 
       {/* Parallax Background Giant Text */}
-      <div className="skills-section__bg-text" ref={bgTextRef}>
-        PLAYLIST
+      <div className="skills-section__bg-text-wrapper">
+        <div className="skills-section__bg-text" ref={bgTextRef}>
+          PLAYLIST
+        </div>
       </div>
 
       <div className="skills-section__container">

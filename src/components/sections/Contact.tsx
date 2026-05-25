@@ -28,7 +28,6 @@ export const Contact: React.FC<ContactProps> = ({ t }) => {
     const ctx = gsap.context(() => {
       // Giant background text parallax
       if (bgText) {
-        gsap.set(bgText, { xPercent: -50, yPercent: -50 });
         const tlText = gsap.timeline({
           scrollTrigger: {
             trigger: section,
@@ -38,8 +37,8 @@ export const Contact: React.FC<ContactProps> = ({ t }) => {
           }
         });
         tlText.fromTo(bgText,
-          { y: -150, xPercent: -50, yPercent: -50 },
-          { y: 150, ease: 'none', xPercent: -50, yPercent: -50 },
+          { y: -150 },
+          { y: 150, ease: 'none' },
           0
         );
         tlText.fromTo(bgText,
@@ -101,8 +100,10 @@ export const Contact: React.FC<ContactProps> = ({ t }) => {
   return (
     <section id="contact" className="contact" ref={sectionRef}>
       {/* Parallax Background Giant Text */}
-      <div className="contact__bg-text" ref={bgTextRef}>
-        CONTACT
+      <div className="contact__bg-text-wrapper">
+        <div className="contact__bg-text" ref={bgTextRef}>
+          CONTACT
+        </div>
       </div>
 
       <div className="contact__gradient"></div>

@@ -217,7 +217,6 @@ export const Projects: React.FC<ProjectsProps> = ({ t }) => {
     const ctx = gsap.context(() => {
       // Giant background text parallax
       if (bgText) {
-        gsap.set(bgText, { xPercent: -50, yPercent: -50 });
         const tlText = gsap.timeline({
           scrollTrigger: {
             trigger: section,
@@ -227,8 +226,8 @@ export const Projects: React.FC<ProjectsProps> = ({ t }) => {
           }
         });
         tlText.fromTo(bgText,
-          { y: 150, xPercent: -50, yPercent: -50 },
-          { y: -150, ease: 'none', xPercent: -50, yPercent: -50 },
+          { y: 150 },
+          { y: -150, ease: 'none' },
           0
         );
         tlText.fromTo(bgText,
@@ -391,8 +390,10 @@ export const Projects: React.FC<ProjectsProps> = ({ t }) => {
   return (
     <section id="projects" className="projects" ref={sectionRef}>
       {/* Parallax Background Giant Text */}
-      <div className="projects__bg-text" ref={bgTextRef}>
-        DISCOGRAPHY
+      <div className="projects__bg-text-wrapper">
+        <div className="projects__bg-text" ref={bgTextRef}>
+          DISCOGRAPHY
+        </div>
       </div>
 
       {/* 1. DESKTOP VIEW (min-width: 769px) */}
