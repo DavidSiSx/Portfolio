@@ -62,7 +62,7 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
       <div className="hero__player-card" ref={cardRef}>
         <div className="hero__album-wrapper">
           <div className="hero__album-glow"></div>
-          <img src="/preview.gif" alt="Portfolio Live Preview" className="hero__album-art" />
+          <img src={`${import.meta.env.BASE_URL}preview.gif`} alt="Portfolio Live Preview" className="hero__album-art" />
         </div>
 
         <div className="hero__player-body">

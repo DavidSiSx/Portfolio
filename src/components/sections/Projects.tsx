@@ -69,11 +69,11 @@ const TITLE_GENRE_CLASSES = [
 
 const ProjectSleeveArt: React.FC<{ index: number }> = ({ index }) => {
   const albumData = [
-    { src: '/abums/hexacorealbum.webp', alt: 'Portada del álbum Hexacore Chiptunes' },
-    { src: '/abums/XVAlbum.webp', alt: 'Portada del álbum Invitaciones Sinfónicas' },
-    { src: '/abums/GestorAlbum.webp', alt: 'Portada del álbum Harvest Folk' },
-    { src: '/abums/BarberAlbum.webp', alt: 'Portada del álbum Barber Chair Blues' },
-    { src: '/abums/AIalbum.webp', alt: 'Portada del álbum Neural Beats AI' }
+    { src: `${import.meta.env.BASE_URL}abums/hexacorealbum.webp`, alt: 'Portada del álbum Hexacore Chiptunes' },
+    { src: `${import.meta.env.BASE_URL}abums/XVAlbum.webp`, alt: 'Portada del álbum Invitaciones Sinfónicas' },
+    { src: `${import.meta.env.BASE_URL}abums/GestorAlbum.webp`, alt: 'Portada del álbum Harvest Folk' },
+    { src: `${import.meta.env.BASE_URL}abums/BarberAlbum.webp`, alt: 'Portada del álbum Barber Chair Blues' },
+    { src: `${import.meta.env.BASE_URL}abums/AIalbum.webp`, alt: 'Portada del álbum Neural Beats AI' }
   ];
   
   const album = albumData[index];

@@ -97,7 +97,7 @@ export const About: React.FC<AboutProps> = ({ t }) => {
           <div className="about__photo-wrapper">
             <div className="about__photo-glow"></div>
             <img 
-              src="/Landscape2.gif" 
+              src={`${import.meta.env.BASE_URL}Landscape2.gif`} 
               alt="David Sierra Sosa" 
               className="about__photo"
             />
