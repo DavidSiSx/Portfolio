@@ -735,20 +735,6 @@ export const Skills: React.FC<SkillsProps> = ({ t }) => {
                   </p>
                 </div>
 
-                {/* Skill Mastery Rating (Spotify Popularity Bar) */}
-                <div className="skills-sidebar__mastery">
-                  <div className="skills-sidebar__mastery-header">
-                    <span>{isSpanish ? 'Popularidad / Dominio' : 'Popularity / Mastery'}</span>
-                    <span className="skills-sidebar__mastery-val">{metadata.mastery}%</span>
-                  </div>
-                  <div className="skills-sidebar__mastery-bar">
-                    <div 
-                      className="skills-sidebar__mastery-fill"
-                      style={{ width: `${metadata.mastery}%` }}
-                    ></div>
-                  </div>
-                </div>
-
                 {/* Description - "About the Album" */}
                 <div className="skills-sidebar__about">
                   <h5>{isSpanish ? 'Sobre esta tecnología' : 'About this technology'}</h5>
@@ -805,16 +791,6 @@ export const Skills: React.FC<SkillsProps> = ({ t }) => {
               <div className="skills-mobile-sheet__info">
                 <h3 className="skills-mobile-sheet__title">{currentSkill.name}</h3>
                 <p className="skills-mobile-sheet__category">{getCategoryLabel(currentSkill.category)}</p>
-              </div>
-
-              <div className="skills-mobile-sheet__mastery">
-                <div className="skills-mobile-sheet__mastery-header">
-                  <span>{isSpanish ? 'Popularidad / Dominio' : 'Popularity / Mastery'}</span>
-                  <span>{metadata.mastery}%</span>
-                </div>
-                <div className="skills-mobile-sheet__mastery-bar">
-                  <div className="skills-mobile-sheet__mastery-fill" style={{ width: `${metadata.mastery}%` }}></div>
-                </div>
               </div>
 
               <div className="skills-mobile-sheet__about">
