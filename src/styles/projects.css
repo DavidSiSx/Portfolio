@@ -80,13 +80,10 @@
   width: 100%;
   height: 100%;
   padding: var(--space-6);
-  background: rgba(49, 62, 23, 0.04);
-  border: 1px solid var(--project-border, rgba(76, 92, 45, 0.25));
+  background: #F2ECDF; /* Premium sand cardstock background */
+  border: 1.5px solid var(--project-border, rgba(76, 92, 45, 0.25));
   border-radius: var(--radius-xl);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35), 
-              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -95,9 +92,9 @@
 
 .projects__info-card:hover {
   border-color: var(--project-border-hover, rgba(76, 92, 45, 0.6));
-  background: rgba(49, 62, 23, 0.08);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55),
-              0 0 25px var(--project-glow, rgba(255, 222, 66, 0.04));
+  background: #F5EFEB; /* Slightly brighter cream on hover */
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6),
+              0 0 25px var(--project-glow, rgba(255, 222, 66, 0.08));
 }
 
 .projects__info-badge {
@@ -105,14 +102,14 @@
   align-self: flex-start;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 700;
   padding: 3px 10px;
   border-radius: var(--radius-full);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  background: var(--project-badge-bg, rgba(255, 222, 66, 0.10));
-  color: var(--project-accent, var(--color-sun));
-  border: 1px solid var(--project-border, rgba(255, 222, 66, 0.20));
+  background: var(--project-badge-bg, rgba(49, 62, 23, 0.08));
+  color: var(--project-accent, var(--color-forest));
+  border: 1px solid var(--project-border, rgba(49, 62, 23, 0.20));
 }
 
 .projects__info-title {
@@ -121,12 +118,60 @@
   font-weight: 700;
   letter-spacing: -0.01em;
   margin-top: var(--space-2);
+  color: var(--color-shadow, #1B0C0C); /* Dark text */
+}
+
+/* Genre-themed typographies for project titles */
+.project-title--panic {
+  font-family: 'Cinzel Decorative', Georgia, serif !important;
+  font-size: 1.55rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--color-shadow, #1B0C0C);
+}
+
+.project-title--chayanne {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+  font-size: 1.65rem !important;
+  letter-spacing: -0.01em !important;
+  color: #a31545 !important; /* Romantic crimson tone for Chayanne */
+}
+
+.project-title--greenday {
+  font-family: 'Special Elite', monospace !important;
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: uppercase !important;
+  color: var(--color-shadow, #1B0C0C);
+}
+
+.project-title--jazz {
+  font-family: 'Bodoni Moda', 'Didot', serif !important;
+  font-size: 1.7rem !important;
+  font-weight: 800 !important;
+  font-style: italic !important;
+  letter-spacing: -0.04em !important;
+  text-transform: uppercase !important;
+  color: #0d0d0d !important;
+}
+
+.project-title--jpop {
+  font-family: 'Righteous', sans-serif !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: #007c70 !important; /* Premium dark teal tone for readability on sand card */
 }
 
 .projects__info-desc {
   font-size: 0.9375rem;
   line-height: 1.6;
-  color: var(--color-text-muted);
+  color: rgba(27, 12, 12, 0.75); /* Readable charcoal grey on sand */
 }
 
 .projects__info-tech {
@@ -138,11 +183,21 @@
 .projects__info-tech-tag {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  padding: 3px 8px;
+  padding: 4px 8px;
   border-radius: var(--radius-sm);
-  background: rgba(27, 12, 12, 0.6);
-  color: var(--color-text-muted);
-  border: 1px solid var(--project-border, rgba(76, 92, 45, 0.4));
+  background: rgba(27, 12, 12, 0.05); /* Light grey tag */
+  color: var(--color-shadow, #1B0C0C);
+  border: 1px solid rgba(27, 12, 12, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.projects__tech-icon {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  flex-shrink: 0;
 }
 
 .projects__info-link {
@@ -151,7 +206,7 @@
   gap: var(--space-2);
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--project-accent, var(--color-sun));
+  color: var(--color-shadow, #1B0C0C);
   transition: all var(--duration-fast) var(--ease-default);
 }
 
@@ -194,13 +249,135 @@
   top: 10px;
   width: 360px;
   height: 360px;
-  background: linear-gradient(135deg, #1b0c0c 0%, #0d0404 100%);
-  border: 6px solid #313e17;
-  border-radius: 24px;
+  background: linear-gradient(135deg, #221212 0%, #0f0505 100%);
+  border: 6px solid #4a5c2d; /* Lighter wood tone */
+  border-radius: 28px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85),
-              inset 0 0 20px rgba(0, 0, 0, 0.9);
+              inset 0 0 25px rgba(0, 0, 0, 0.9);
   z-index: 2;
   overflow: visible; /* Allows tonearm to pivot */
+}
+
+/* Turntable Brand Logo Label */
+.projects__turntable-brand {
+  position: absolute;
+  top: 15px;
+  left: 90px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.25);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+  pointer-events: none;
+}
+
+/* Strobe light column */
+.projects__turntable-power {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 36px;
+  height: 36px;
+  background: radial-gradient(circle, #333 30%, #111 80%);
+  border: 2px solid #222;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projects__turntable-power::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: #ff3b30;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ff3b30, inset 0 1px 2px rgba(255,255,255,0.5);
+}
+
+/* Rectangular Start/Stop Button */
+.projects__turntable-btn-start {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  width: 48px;
+  height: 32px;
+  background: linear-gradient(180deg, #d8d8d8 0%, #a5a5a5 100%);
+  border: 1.5px solid #555;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.6), 
+              inset 0 1px 0 rgba(255,255,255,0.5);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projects__turntable-btn-start::before {
+  content: 'START';
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 900;
+  color: #222;
+  letter-spacing: 0.05em;
+}
+
+/* Speed buttons (33 & 45 rpm) */
+.projects__turntable-speeds {
+  position: absolute;
+  bottom: 15px;
+  left: 75px;
+  display: flex;
+  gap: 4px;
+}
+
+.projects__turntable-speed-btn {
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(180deg, #d8d8d8 0%, #a5a5a5 100%);
+  border: 1px solid #555;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+
+/* Pitch Control Slider */
+.projects__turntable-pitch-track {
+  position: absolute;
+  bottom: 25px;
+  right: 15px;
+  width: 10px;
+  height: 110px;
+  background: #050202;
+  border: 1.5px solid #222;
+  border-radius: 2px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.9);
+}
+
+.projects__turntable-pitch-thumb {
+  position: absolute;
+  top: 45px;
+  left: -5px;
+  width: 17px;
+  height: 10px;
+  background: linear-gradient(180deg, #e5e5e5 0%, #888 100%);
+  border: 1.5px solid #111;
+  border-radius: 1.5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+/* Target LED Indicator */
+.projects__turntable-led-target {
+  position: absolute;
+  top: 60px;
+  left: 15px;
+  width: 8px;
+  height: 8px;
+  background: #39ff14; /* Green target LED */
+  border-radius: 50%;
+  box-shadow: 0 0 10px #39ff14, 0 0 15px rgba(57,255,20,0.4);
 }
 
 /* Platter outer edge */
@@ -411,41 +588,11 @@
   letter-spacing: 0.12em;
 }
 
-.projects__sleeve-svg {
+.projects__sleeve-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* PokeBattle preview container inside jacket */
-.poke-battle-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding: var(--space-4);
-  background: radial-gradient(circle at center, #1b2612 0%, #0d1209 100%);
-}
-
-/* --- Progress indicator --- */
-.projects__progress {
-  position: absolute;
-  bottom: var(--space-4);
-  left: 8%;
-  right: 8%;
-  height: 2px;
-  background: rgba(76, 92, 45, 0.2);
-  border-radius: var(--radius-full);
-}
-
-.projects__progress-fill {
-  height: 100%;
-  background: var(--color-sun);
-  border-radius: var(--radius-full);
-  width: 0%;
-  will-change: width;
+  display: block;
 }
 
 /* ================================================================
@@ -557,13 +704,10 @@
     width: 300px;
     min-height: 260px;
     padding: var(--space-6);
-    background: rgba(49, 62, 23, 0.05);
-    border: 1px solid var(--project-border, rgba(76, 92, 45, 0.25));
+    background: #F2ECDF; /* Premium sand cardstock background */
+    border: 1.5px solid var(--project-border, rgba(76, 92, 45, 0.25));
     border-radius: var(--radius-xl);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
-                inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
@@ -575,12 +719,13 @@
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.01em;
+    color: var(--color-shadow, #1B0C0C);
   }
 
   .projects__mobile-desc {
     font-size: 0.875rem;
     line-height: 1.6;
-    color: var(--color-text-muted);
+    color: rgba(27, 12, 12, 0.75);
   }
 
   .projects__mobile-tech {
@@ -592,11 +737,14 @@
   .projects__mobile-tech-tag {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
-    padding: 3px 8px;
+    padding: 4px 8px;
     border-radius: var(--radius-sm);
-    background: rgba(27, 12, 12, 0.6);
-    color: var(--color-text-muted);
-    border: 1px solid var(--project-border, rgba(76, 92, 45, 0.4));
+    background: rgba(27, 12, 12, 0.05);
+    color: var(--color-shadow, #1B0C0C);
+    border: 1px solid rgba(27, 12, 12, 0.1);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
   }
 
   .projects__mobile-link {
@@ -605,36 +753,6 @@
     gap: var(--space-2);
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--project-accent, var(--color-sun));
+    color: var(--color-shadow, #1B0C0C);
   }
-}
-
-.projects__bg-text-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-/* Background giant text — parallax target */
-.projects__bg-text {
-  font-family: var(--font-display);
-  font-size: clamp(8rem, 20vw, 24rem);
-  font-weight: 900;
-  color: rgba(242, 236, 223, 0.015); /* Very subtle light sand matte overlay */
-  text-transform: uppercase;
-  letter-spacing: -0.04em;
-  line-height: 0.8;
-  white-space: nowrap;
-  user-select: none;
-  pointer-events: none;
-  position: relative;
-  will-change: transform;
 }

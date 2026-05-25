@@ -13,6 +13,8 @@
    - Code/Mono:        JetBrains Mono
    ================================================================ */
 
+@import './styles/index.css';
+
 /* --- CSS Custom Properties --- */
 :root {
   /* Core palette */
@@ -218,3 +220,4 @@ button {
     padding-inline: var(--space-4);
   }
 }
+

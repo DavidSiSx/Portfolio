@@ -38,21 +38,18 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
         },
       });
 
-      // Background text parallax
-      gsap.fromTo(bgText,
-        { y: 0, opacity: 0.015 },
-        {
-          y: 150,
-          opacity: 0,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 0.3,
-          },
-        }
-      );
+      // Background text parallax — moves slower than scroll
+      gsap.to(bgText, {
+        y: -200,
+        opacity: 0.04,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.3,
+        },
+      });
     }, section);
 
     return () => ctx.revert();
@@ -60,9 +57,7 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
 
   return (
     <section id="hero" className="hero" ref={sectionRef}>
-      <div className="hero__bg-text-wrapper">
-        <div className="hero__bg-text" ref={bgTextRef}>SIERRA SOSA</div>
-      </div>
+      <div className="hero__bg-text" ref={bgTextRef}>SIERRA SOSA</div>
 
       <div className="hero__player-card" ref={cardRef}>
         <div className="hero__album-wrapper">

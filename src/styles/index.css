@@ -1,0 +1,14 @@
+/* ================================================================
+   styles/index.css — Main CSS entry point
+   Imports all modular stylesheets in dependency order
+   ================================================================ */
+
+@import './base.css';
+@import './animations.css';
+@import './nav.css';
+@import './hero.css';
+@import './about.css';
+@import './projects.css';
+@import './stack.css';
+@import './contact.css';
+@import './footer.css';

@@ -22,7 +22,6 @@ export const About: React.FC<AboutProps> = ({ t }) => {
   const bioRef = useRef<HTMLParagraphElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
   const detailsRef = useRef<HTMLDivElement>(null);
-  const bgTextRef = useRef<HTMLDivElement>(null);
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
@@ -38,35 +37,9 @@ export const About: React.FC<AboutProps> = ({ t }) => {
     const bio = bioRef.current;
     const visual = visualRef.current;
     const details = detailsRef.current;
-    const bgText = bgTextRef.current;
     if (!section || !bio || !visual || !details) return;
 
     const ctx = gsap.context(() => {
-      // Background text parallax
-      if (bgText) {
-        const tlText = gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 0.5,
-          }
-        });
-        tlText.fromTo(bgText,
-          { y: -150 },
-          { y: 150, ease: 'none' },
-          0
-        );
-        tlText.fromTo(bgText,
-          { opacity: 0 },
-          { opacity: 0.015, duration: 0.2, ease: 'power1.out' },
-          0
-        );
-        tlText.to(bgText,
-          { opacity: 0, duration: 0.2, ease: 'power1.in' },
-          0.8
-        );
-      }
       // Animate characters with ScrollTrigger scrub
       const chars = bio.querySelectorAll('.char');
       gsap.fromTo(
@@ -118,13 +91,6 @@ export const About: React.FC<AboutProps> = ({ t }) => {
 
   return (
     <section id="about" className="about" ref={sectionRef}>
-      {/* Parallax Background Giant Text */}
-      <div className="about__bg-text-wrapper">
-        <div className="about__bg-text" ref={bgTextRef}>
-          CONTEXT
-        </div>
-      </div>
-
       <div className="about__container">
         {/* Left: Visual / Avatar */}
         <div className="about__visual" ref={visualRef}>

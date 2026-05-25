@@ -3,7 +3,6 @@ import React from 'react';
 interface NavbarProps {
   lang: 'es' | 'en';
   toggleLang: () => void;
-  scrolled: boolean;
   t: {
     about: string;
     skills: string;
@@ -12,9 +11,9 @@ interface NavbarProps {
   };
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang, scrolled, t }) => {
+export const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang, t }) => {
   return (
-    <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
+    <nav className="nav">
       <div className="nav__inner">
         <a href="#" className="nav__brand">
           David<span>.</span>

@@ -1,0 +1,31 @@
+/* ================================================================
+   animations.css — Shared keyframes and animation utility classes
+   ================================================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--duration-slow) var(--ease-default) forwards;
+}
+
+.animate-spin-slow {
+  animation: spin 12s linear infinite;
+}
