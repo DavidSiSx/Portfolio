@@ -11,6 +11,8 @@ export interface Translation {
     subtitle: string;
     scrollText: string;
     status: string;
+    cvEs: string;
+    cvEn: string;
   };
   about: {
     eyebrow: string;
@@ -59,7 +61,9 @@ export const content: { es: Translation; en: Translation } = {
       title: 'DAVID SIERRA',
       subtitle: 'Desarrollo de Software Multiplataforma • Cancún, MX',
       scrollText: 'SCROLL PARA MÁS DETALLES',
-      status: 'REPRODUCIENDO AHORA'
+      status: 'REPRODUCIENDO AHORA',
+      cvEs: 'CV Español',
+      cvEn: 'CV Inglés'
     },
     about: {
       eyebrow: 'SOBRE MÍ',
@@ -142,7 +146,9 @@ export const content: { es: Translation; en: Translation } = {
       title: 'DAVID SIERRA',
       subtitle: 'Multiplatform Software Dev • Cancún, MX',
       scrollText: 'SCROLL FOR CONTEXT',
-      status: 'NOW PLAYING'
+      status: 'NOW PLAYING',
+      cvEs: 'CV Spanish',
+      cvEn: 'CV English'
     },
     about: {
       eyebrow: 'ABOUT ME',

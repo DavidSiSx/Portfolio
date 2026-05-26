@@ -10,6 +10,8 @@ interface HeroProps {
     title: string;
     subtitle: string;
     scrollText: string;
+    cvEs: string;
+    cvEn: string;
   };
 }
 
@@ -125,6 +127,36 @@ export const Hero: React.FC<HeroProps> = ({ t }) => {
                 <path d="M21 13v2a4 4 0 0 1-4 4H3" />
               </svg>
             </button>
+          </div>
+
+          {/* CV Downloads */}
+          <div className="hero__cv-container">
+            <a 
+              href={`${import.meta.env.BASE_URL}davidsierrasosa_CV_ES.pdf`} 
+              download 
+              className="hero__cv-btn"
+              title={t.cvEs}
+            >
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span>{t.cvEs}</span>
+            </a>
+            <a 
+              href={`${import.meta.env.BASE_URL}davidsierrasosa_CV_EN.pdf`} 
+              download 
+              className="hero__cv-btn"
+              title={t.cvEn}
+            >
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span>{t.cvEn}</span>
+            </a>
           </div>
         </div>
       </div>
